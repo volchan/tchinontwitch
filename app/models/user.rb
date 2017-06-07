@@ -4,13 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
-  has_many :toons
+  has_many :toons, dependent: :destroy
 
-  validates :username,
-  :presence => true,
-  :uniqueness => {
-    :case_sensitive => false
-  }
+  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
   attr_accessor :login
 

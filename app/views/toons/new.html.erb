@@ -1,5 +1,5 @@
 <%= simple_form_for @toon do |f| %>
   <%= f.input :name %>
-  <%= f.input :realm %>
+  <%= f.input :realm, collection: @realms %>
   <%= button_tag %>
 <% end %>

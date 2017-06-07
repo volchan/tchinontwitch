@@ -1,6 +1,8 @@
 class Toon < ApplicationRecord
   belongs_to :user
 
+  validates :name, uniqueness: true
+
   enum faction: { horde: 1, alliance: 0 }
 
   enum race_id: {

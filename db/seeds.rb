@@ -1,17 +1,17 @@
-puts 'SEEDING....'
-
-User.destroy_all
-Server.destroy_all
-
-print 'seeding admin...'
-
-User.create!(
-  username: 'admin',
-  password: 'tchinadmin',
-  email: 'admin@tchinontwitch.fr'
-)
-
-puts 'done seeding admin...'
+# puts 'SEEDING....'
+#
+# User.destroy_all
+# Realm.destroy_all
+#
+# print 'seeding admin...'
+#
+# User.create!(
+#   username: 'admin',
+#   password: 'tchinadmin',
+#   email: 'admin@tchinontwitch.fr'
+# )
+#
+# puts 'done seeding admin...'
 
 print 'seeding realms...'
 
@@ -20,11 +20,11 @@ realm_call = RestClient.get(realm_call_url)
 parsed_realm_call = JSON.parse(realm_call)
 
 parsed_realm_call['realms'].each do |realm|
-  Server.create!(
+  Realm.create!(
     name: realm['name'],
     slug: realm['slug']
   )
   print "seeded #{realm['name']}..."
 end
 
-puts 'done seeding servers....'
+puts 'done seeding realms....'
