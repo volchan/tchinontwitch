@@ -5,8 +5,11 @@
   <%= toon.faction %>
   <%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg" %>
   <p><%= toon.name %></p>
-  <%= toon.race_id %>
-  <%= toon.class_id %>
+  <p><%= toon.race_id %></p>
+  <p><%= toon.class_id %></p>
+  <%= link_to toon_path(toon), method: :delete do %>
+      <i class="fa fa-trash"></i>
+  <% end %>
 <% end %>
 
 <%= link_to 'import a new character', new_toon_path %>

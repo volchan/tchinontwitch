@@ -1,7 +1,7 @@
 class Toon < ApplicationRecord
   belongs_to :user
 
-  enum faction: { horde: 1, alliance: 2 }
+  enum faction: { horde: 1, alliance: 0 }
 
   enum race_id: {
     'Human' => 1,

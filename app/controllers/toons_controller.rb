@@ -1,7 +1,7 @@
 class ToonsController < ApplicationController
 
   def index
-    @toons = Toon.where(:user == current_user)
+    @toons = Toon.where(user: current_user)
   end
 
   def show
@@ -26,8 +26,8 @@ class ToonsController < ApplicationController
       i_level: parsed_api_call['items']['averageItemLevelEquipped'],
       thumbnail: parsed_api_call['thumbnail'],
       faction: parsed_api_call['faction'],
-      guild_name: parsed_api_call['guild']['name'],
-      guild_realm: parsed_api_call['guild']['realm'],
+      guild_name: parsed_api_call['guild'].try(:[], 'name'),
+      guild_realm: parsed_api_call['guild'].try(:[], 'realm'),
       spec_name: toon_spec['name'],
       spec_role: toon_spec['role'],
       spec_icon: toon_spec['icon'],
@@ -40,13 +40,10 @@ class ToonsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    toon = Toon.find(params[:id])
+    toon.destroy
+    redirect_to toons_path
   end
 
   private
