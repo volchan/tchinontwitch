@@ -1,0 +1,12 @@
+<h1>hi there !</h1>
+
+<% @toons.each do |toon| %>
+  <%= image_tag "http://render-api-eu.worldofwarcraft.com/static-render/eu/#{toon.thumbnail}" %>
+  <%= toon.faction %>
+  <%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg" %>
+  <p><%= toon.name %></p>
+  <%= toon.race_id %>
+  <%= toon.class_id %>
+<% end %>
+
+<%= link_to 'import a new character', new_toon_path %>

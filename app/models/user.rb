@@ -15,7 +15,6 @@ class User < ApplicationRecord
   attr_accessor :login
 
   def login=(login)
-    byebug
     @login = login
   end
 
