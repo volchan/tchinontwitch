@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607181538) do
+ActiveRecord::Schema.define(version: 20170608134927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dungeons", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "raids", force: :cascade do |t|
+    t.integer  "dungeon_id"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dungeon_id"], name: "index_raids_on_dungeon_id", using: :btree
+  end
 
   create_table "realms", force: :cascade do |t|
     t.string   "name"
@@ -63,5 +78,6 @@ ActiveRecord::Schema.define(version: 20170607181538) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "raids", "dungeons"
   add_foreign_key "toons", "users"
 end
