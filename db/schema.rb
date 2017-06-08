@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608134927) do
+ActiveRecord::Schema.define(version: 20170608140058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170608134927) do
 
   create_table "toons", force: :cascade do |t|
     t.string   "name"
-    t.string   "realm"
     t.integer  "class_id"
     t.integer  "race_id"
     t.integer  "level"
@@ -55,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170608134927) do
     t.string   "spec_icon"
     t.string   "guild_name"
     t.string   "guild_realm"
+    t.integer  "realm_id"
+    t.index ["realm_id"], name: "index_toons_on_realm_id", using: :btree
     t.index ["user_id"], name: "index_toons_on_user_id", using: :btree
   end
 
@@ -79,5 +80,6 @@ ActiveRecord::Schema.define(version: 20170608134927) do
   end
 
   add_foreign_key "raids", "dungeons"
+  add_foreign_key "toons", "realms"
   add_foreign_key "toons", "users"
 end
