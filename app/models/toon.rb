@@ -1,5 +1,8 @@
 class Toon < ApplicationRecord
   belongs_to :user
+  belongs_to :realm
+
+  has_many :tags
 
   validates :name, uniqueness: true
 

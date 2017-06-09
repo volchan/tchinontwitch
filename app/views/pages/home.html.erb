@@ -1,6 +1,9 @@
 <% @raids.each do |raid| %>
   <%= raid.dungeon.name %>
   <%= raid.date %>
+  <%= link_to 'check this raid', raid_path(raid) %>
+  <%= link_to 'tag for this raid' , new_raid_tag_path(raid) %>
+  <br>
 <% end %>
 <%= link_to "new raid", new_raid_path %>
 <%= link_to "my characters", toons_path %>

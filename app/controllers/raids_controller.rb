@@ -3,6 +3,7 @@ class RaidsController < ApplicationController
   end
 
   def show
+    @raid = Raid.find(params[:id])
   end
 
   def new
@@ -18,7 +19,6 @@ class RaidsController < ApplicationController
     raid_infos[:date] = Time.parse(raid_params[:date]) unless raid_params[:date] == 'Y/m/d H:i'
     raid_infos[:leader] = current_user
     @raid = Raid.new(raid_infos)
-    raise
     if @raid.save
       redirect_to root_path
     else

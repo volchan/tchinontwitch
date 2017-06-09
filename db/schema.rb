@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609092540) do
+ActiveRecord::Schema.define(version: 20170609093552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20170609092540) do
     t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "toon_id"
+    t.integer  "raid_id"
+    t.integer  "status",     default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["raid_id"], name: "index_tags_on_raid_id", using: :btree
+    t.index ["toon_id"], name: "index_tags_on_toon_id", using: :btree
   end
 
   create_table "toons", force: :cascade do |t|
@@ -82,6 +92,8 @@ ActiveRecord::Schema.define(version: 20170609092540) do
   end
 
   add_foreign_key "raids", "dungeons"
+  add_foreign_key "tags", "raids"
+  add_foreign_key "tags", "toons"
   add_foreign_key "toons", "realms"
   add_foreign_key "toons", "users"
 end

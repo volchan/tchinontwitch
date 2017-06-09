@@ -1,0 +1,21 @@
+<%= @raid.dungeon.name %>
+<%= @raid.difficulty %>
+<%= Time.parse(@raid.date).to_date.strftime('%A %d %B %Y') %>
+<%= Time.parse(@raid.date).strftime('%H:%M') %>
+<% @raid.tags.each do |tag| %>
+  <%= image_tag "https://render-eu.worldofwarcraft.com/character/#{tag.toon.thumbnail}" %>
+  <%= tag.toon.name %>
+  <%= tag.toon.realm %>
+  <%= "#{tag.toon.guild_name} @ #{tag.toon.guild_realm}" %>
+  <%= tag.toon.level %>
+  <%= tag.toon.i_level %>
+  <%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{tag.toon.spec_icon}.jpg" %>
+  <%= tag.toon.spec_name %>
+  <%= tag.toon.spec_role %>
+  <%= tag.status %>
+  <%= link_to 'accept', tag_path(tag, status: :accepted), method: :patch %>
+  <%= link_to 'refuse', tag_path(tag, status: :refused), method: :patch %>
+  <%= link_to tag_path(tag), method: :delete do %>
+      <i class="fa fa-trash"></i>
+  <% end %>
+<% end %>
