@@ -1,4 +1,49 @@
-/* -------------------------------------
- * CSS code specific to home page
- * (margin/padding adjustments)
- * ------------------------------------- */
+.home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  // background-color: red;
+  &-title {
+    display: flex;
+    // background-color: orange;
+    flex: 2;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-family: $title-font;
+      margin: 0;
+    }
+  }
+  &-raids {
+    display: flex;
+    // background-color: blue;
+    flex: 8;
+    justify-content: space-around;
+    align-items: center;
+    font-family: $pixel-font;
+    &-left {
+      height: 80%;
+      padding: 10px;
+      // background-color: green;
+      &-title {
+        h3 {
+          font-size: 1.8em;
+          font-family: $pixel-font;
+          margin-top: 0;
+        }
+      }
+    }
+    &-right {
+      height: 80%;
+      padding: 10px;
+      // background-color: teal;
+      &-title {
+        h3 {
+          font-size: 1.8em;
+          font-family: $pixel-font;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

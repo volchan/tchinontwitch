@@ -1,9 +1,21 @@
-<% @raids.each do |raid| %>
-  <%= raid.dungeon.name %>
-  <%= raid.date %>
-  <%= link_to 'check this raid', raid_path(raid) %>
-  <%= link_to 'tag for this raid' , new_raid_tag_path(raid) %>
-  <br>
-<% end %>
-<%= link_to "new raid", new_raid_path %>
-<%= link_to "my characters", toons_path %>
+<div class="home">
+  <div class="home-title">
+    <div class="home-title-content">
+      <h1>TCHÏN RAID SCHEDULER</h1>
+    </div>
+  </div>
+  <div class="home-raids">
+    <div class="home-raids-left">
+      <div class="home-raids-left-title text-center">
+        <h3>Upcoming raids</h3>
+      </div>
+      <%= render partial: 'raids_displayer', locals: { raids: @upcoming_raids } %>
+    </div>
+    <div class="home-raids-right">
+      <div class="home-raids-right-title text-center">
+        <h3>Past raids</h3>
+      </div>
+      <%= render partial: 'raids_displayer', locals: { raids: @past_raids } %>
+    </div>
+  </div>
+</div>
