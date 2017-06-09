@@ -1,7 +1,8 @@
 <div class="home">
   <div class="home-title">
     <div class="home-title-content">
-      <h1>TCHÏN RAID SCHEDULER</h1>
+      <h1>TCHÏN</h1>
+      <p>RAID SCHEDULER</p>
     </div>
   </div>
   <div class="home-raids">
@@ -9,13 +10,17 @@
       <div class="home-raids-left-title text-center">
         <h3>Upcoming raids</h3>
       </div>
-      <%= render partial: 'raids_displayer', locals: { raids: @upcoming_raids } %>
+      <div class="home-raids-left-content">
+        <%= render partial: 'raids_displayer', locals: { raids: @upcoming_raids } %>
+      </div>
     </div>
     <div class="home-raids-right">
       <div class="home-raids-right-title text-center">
         <h3>Past raids</h3>
       </div>
-      <%= render partial: 'raids_displayer', locals: { raids: @past_raids } %>
+      <div class="home-raids-right-content">
+        <%= render partial: 'raids_displayer', locals: { raids: @past_raids } %>
+      </div>
     </div>
   </div>
 </div>

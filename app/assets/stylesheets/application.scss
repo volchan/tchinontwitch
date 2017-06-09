@@ -17,6 +17,10 @@
 @import 'pages/index';
 
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: stretch;
   background: #191919;
   background: -webkit-linear-gradient(to top, #151515, #191919);
   background: linear-gradient(to top, #151515, #191919);

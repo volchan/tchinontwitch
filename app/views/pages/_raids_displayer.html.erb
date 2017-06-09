@@ -1,21 +1,8 @@
 <% raids.each do |raid| %>
   <div class="raid">
-    <div class="raid-left">
-      <%= link_to raid_path(raid) do %>
-        <h2><%= raid.dungeon.name %></h2>
-        <p><%= "#{Time.parse(raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(raid.date).strftime('%H:%M')}" %></p>
-      <% end %>
-    </div>
-    <div class="raid-right">
-      <%= link_to new_raid_tag_path(raid) do %>
-        <i class="fa fa-bookmark"></i>
-        <span>Apply to this raid</span>
-      <% end %>
-      <% if current_user.admin %>
-        <%= link_to raid_path(raid), method: :delete do %>
-          <i class="fa fa-trash"></i>
-        <% end %>
-      <% end %>
-    </div>
+    <%= link_to raid_path(raid) do %>
+      <h2><%= raid.dungeon.name %></h2>
+      <p><%= "#{Time.parse(raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(raid.date).strftime('%H:%M')}" %></p>
+    <% end %>
   </div>
 <% end %>
