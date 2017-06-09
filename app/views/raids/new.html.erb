@@ -1,0 +1,16 @@
+<%= simple_form_for @raid do |f| %>
+  <%= f.input :dungeon, collection: @dungeons, required: true %>
+  <%= f.input :difficulty, collection: Raid.difficulties, default: 0 %>
+  <%= f.input :date, input_html: { class: 'datetimepicker' }, placeholder: 'Y/m/d H:i', required: true %>
+  <%= f.submit %>
+<% end %>
+
+<%= content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.datetimepicker').datetimepicker({
+        step: 30,
+      });
+    });
+  </script>
+<% end %>

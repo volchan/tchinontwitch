@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
   has_many :toons, dependent: :destroy
+  has_many :own_raids, through: :tags, source: :raids
 
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
 
