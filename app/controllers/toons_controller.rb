@@ -4,8 +4,7 @@ class ToonsController < ApplicationController
     @toons = Toon.where(user: current_user)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @toon = Toon.new
@@ -13,7 +12,7 @@ class ToonsController < ApplicationController
   end
 
   def create
-    call_params = (toons_params)
+    call_params = toons_params
     realm = Realm.find(call_params['realm_id'])
     bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{realm.slug}/#{call_params['name']}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
     bnet_api_call = RestClient.get(bnet_url)
@@ -53,5 +52,4 @@ class ToonsController < ApplicationController
   def toons_params
     params.require(:toon).permit(:name, :realm_id)
   end
-
 end

@@ -1,11 +1,9 @@
 class RaidsController < ApplicationController
-  before_action :find_raid, only: [:show, :destroy]
+  before_action :find_raid, only: %i[show destroy]
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
   def new
     @raid = Raid.new
@@ -27,12 +25,6 @@ class RaidsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @raid.destroy
     redirect_to root_path
@@ -47,5 +39,4 @@ class RaidsController < ApplicationController
   def raid_params
     params.require(:raid).permit(:dungeon, :difficulty, :date)
   end
-
 end

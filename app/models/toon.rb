@@ -22,8 +22,8 @@ class Toon < ApplicationRecord
     'Draenei' => 11,
     'Worgen' => 22,
     'Pandaren' => 24,
-    'Pandaren' => 25,
-    'Pandaren' => 26
+    'Pandaren horde' => 25,
+    'Pandaren alliance' => 26
   }
 
   enum class_id: {

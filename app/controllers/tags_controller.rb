@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
-  before_action :find_raid, only: [:new, :create]
-  before_action :find_tag, only: [:update, :destroy]
+  before_action :find_raid, only: %i[new create]
+  before_action :find_tag, only: %i[update destroy]
 
   def new
     @tag = Tag.new
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
   def update
     @tag.status = params[:status]
     @tag.save
-    @raid = tag.raid
+    @raid = @tag.raid
     redirect_to @raid
   end
 
@@ -45,5 +45,4 @@ class TagsController < ApplicationController
   def tag_params
     params.require(:tag).permit(:toon_id)
   end
-
 end
