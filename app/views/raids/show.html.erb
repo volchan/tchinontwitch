@@ -5,7 +5,7 @@
 <% @raid.tags.each do |tag| %>
   <%= image_tag "https://render-eu.worldofwarcraft.com/character/#{tag.toon.thumbnail}" %>
   <%= tag.toon.name %>
-  <%= tag.toon.realm %>
+  <%= tag.toon.realm.name %>
   <%= "#{tag.toon.guild_name} @ #{tag.toon.guild_realm}" %>
   <%= tag.toon.level %>
   <%= tag.toon.i_level %>

@@ -1,4 +1,4 @@
 <%= simple_form_for [@raid, @tag] do |f| %>
-  <%= f.input :toon_id, collection: @toons %>
+  <%= f.association :toon, collection: @toons %>
   <%= f.submit %>
 <% end %>

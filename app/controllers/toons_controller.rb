@@ -15,13 +15,13 @@ class ToonsController < ApplicationController
   def create
     call_params = (toons_params)
     realm = Realm.find(call_params['realm_id'])
-    bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{realm.slug}/#{call_params['name']}?fields=items,guild,talents&locale=fr_FR&apikey=29vbsw7mjp4bjk2qqczb2ckxv5yhh5me")
+    bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{realm.slug}/#{call_params['name']}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
     bnet_api_call = RestClient.get(bnet_url)
     parsed_api_call = JSON.parse(bnet_api_call)
     toon_spec = parsed_api_call['talents'].find('selected').first['spec']
     @toon = Toon.new(
       name: parsed_api_call['name'],
-      realm_id: realm,
+      realm: realm,
       class_id: parsed_api_call['class'],
       race_id: parsed_api_call['race'],
       level: parsed_api_call['level'],
