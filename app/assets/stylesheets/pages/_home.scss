@@ -7,7 +7,7 @@
     flex: 8;
     justify-content: space-around;
     align-items: center;
-    font-family: $pixel-font;
+    font-family: $base-font;
     &-left {
       height: 80%;
       padding: 10px;
@@ -16,7 +16,8 @@
       &-title {
         flex: 0.5;
         h3 {
-          font-size: 1.8em;
+          font-size: 2.5em;
+          font-weight: bold;
           font-family: $pixel-font;
           margin-top: 0;
         }
@@ -37,7 +38,8 @@
       &-title {
         flex: 0.5;
         h3 {
-          font-size: 1.8em;
+          font-size: 2.5em;
+          font-weight: bold;
           font-family: $pixel-font;
           margin-top: 0;
         }
