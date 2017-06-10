@@ -1,24 +1,4 @@
 <div class="home">
-  <div class="home-header">
-    <div class="home-header-title">
-      <h1>TCHÏN</h1>
-      <p>RAID SCHEDULER</p>
-      <%= link_to '', root_path %>
-    </div>
-    <div class="home-header-btn">
-      <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-        <% end %>
-        <% if current_user.admin %>
-          &nbsp <%= link_to "New Raid", new_raid_path, class: "btn btn-xs btn-primary" %>
-        <% end %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-xs btn-primary' %> &nbsp
-        <%= link_to "Login", new_user_session_path %>
-      <% end %>
-    </div>
-  </div>
   <div class="home-raids">
     <div class="home-raids-left">
       <div class="home-raids-left-title text-center">
