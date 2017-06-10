@@ -1,0 +1,22 @@
+<% @toons.each do |toon| %>
+  <div class="toon-card">
+    <div class="toon-card-img" style="<%= toon_picture(toon) %>"></div>
+    <div class="toon-card-infos">
+      <p><%= "#{toon.name} @ #{toon.realm.name}" %></p>
+      <p><%= "#{toon.level} #{toon.race_id} " %></p>
+      <p><%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg" %> <%= "#{toon.spec_name}  #{toon.class_id}" %></p>
+    </div>
+    <div class="toon-card-btns">
+      <div class="toon-card-btns-top">
+        <%= link_to toon_path(toon), method: :patch do %>
+          <i class="fa fa-refresh"></i>
+        <% end %>
+      </div>
+      <div class="toon-card-btns-bottom">
+        <%= link_to toon_path(toon), method: :delete do %>
+        <i class="fa fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

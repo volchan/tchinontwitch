@@ -1,4 +1,5 @@
 class ToonsController < ApplicationController
+  before_action :find_toon, only: %i[update destroy]
 
   def index
     @toons = Toon.where(user: current_user)
@@ -41,13 +42,36 @@ class ToonsController < ApplicationController
     end
   end
 
+  def update
+    bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{@toon.realm.slug}/#{@toon.name.downcase}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
+    bnet_api_call = RestClient.get(bnet_url)
+    parsed_api_call = JSON.parse(bnet_api_call)
+    toon_spec = parsed_api_call['talents'].find('selected').first['spec']
+    @toon.class_id = parsed_api_call['class']
+    @toon.race_id = parsed_api_call['race']
+    @toon.level = parsed_api_call['level']
+    @toon.i_level = parsed_api_call['items']['averageItemLevelEquipped']
+    @toon.thumbnail = parsed_api_call['thumbnail']
+    @toon.faction = parsed_api_call['faction']
+    @toon.guild_name = parsed_api_call['guild'].try(:[], 'name')
+    @toon.guild_realm = parsed_api_call['guild'].try(:[], 'realm')
+    @toon.spec_name = toon_spec['name']
+    @toon.spec_role = toon_spec['role']
+    @toon.spec_icon = toon_spec['icon']
+    @toon.save
+    redirect_to toons_path
+  end
+
   def destroy
-    toon = Toon.find(params[:id])
     toon.destroy
     redirect_to toons_path
   end
 
   private
+
+  def find_toon
+    @toon = Toon.find(params[:id])
+  end
 
   def toons_params
     params.require(:toon).permit(:name, :realm_id)

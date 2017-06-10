@@ -1,8 +1,10 @@
 <div class="toons">
+  <div class="toons-title">
+    <h1>My Characters</h1>
+  </div>
   <div class="toons-container">
-    <% @toons.each do |toon| %>
-      <%= render 'toon_card' %>
-    <% end %>
-    <%= link_to 'import a new character', new_toon_path %>
+    <%= render 'toon_card' %>
+    <%= render 'new_toon_card' %>
+    <%= render 'fake_cards' %>
   </div>
 </div>
