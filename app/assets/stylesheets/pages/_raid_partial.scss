@@ -2,10 +2,13 @@
   font-size: 0.8em;
   text-align: center;
   margin-bottom: 5px;
-  h2 {
+  span {
     font-size: 1.5em;
     font-family: $base-font;
     font-weight: 700;
     margin: 0;
+  }
+  img {
+    vertical-align: baseline;
   }
 }

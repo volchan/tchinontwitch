@@ -6,7 +6,7 @@ class Toon < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  enum faction: { horde: 1, alliance: 0 }
+  enum faction: { alliance: 0, horde: 1 }
 
   enum race_id: {
     'Human' => 1,

@@ -1,7 +1,7 @@
 <% raids.each do |raid| %>
   <div class="raid">
     <%= link_to raid_path(raid) do %>
-      <h2><%= raid.dungeon.name %></h2>
+      <%= image_tag faction_pic(raid) %> <span><%= raid.dungeon.name %></span>
     <% end %>
     <p><%= "#{Time.parse(raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(raid.date).strftime('%H:%M')}" %></p>
   </div>
