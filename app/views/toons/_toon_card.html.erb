@@ -4,7 +4,7 @@
     <div class="toon-card-infos">
       <p><%= "#{toon.name} @ #{toon.realm.name}" %></p>
       <p><%= "#{toon.level} #{toon.race_id} " %></p>
-      <p><%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg" %> <%= "#{toon.spec_name}  #{toon.class_id}" %></p>
+      <p><%= class_img(toon) %> <%= "#{toon.spec_name}  #{toon.class_id}" %></p>
     </div>
     <div class="toon-card-btns">
       <div class="toon-card-btns-top">

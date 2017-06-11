@@ -19,7 +19,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    @tag.status = params[:status]
+    @tag.status = params[:status].to_i
     @tag.save
   end
 

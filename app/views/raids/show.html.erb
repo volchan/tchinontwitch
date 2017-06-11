@@ -1,21 +1,32 @@
-<%= @raid.dungeon.name %>
-<%= @raid.difficulty %>
-<%= Time.parse(@raid.date).to_date.strftime('%A %d %B %Y') %>
-<%= Time.parse(@raid.date).strftime('%H:%M') %>
-<% @raid.tags.each do |tag| %>
-  <%= image_tag "https://render-eu.worldofwarcraft.com/character/#{tag.toon.thumbnail}" %>
-  <%= tag.toon.name %>
-  <%= tag.toon.realm.name %>
-  <%= "#{tag.toon.guild_name} @ #{tag.toon.guild_realm}" %>
-  <%= tag.toon.level %>
-  <%= tag.toon.i_level %>
-  <%= image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{tag.toon.spec_icon}.jpg" %>
-  <%= tag.toon.spec_name %>
-  <%= tag.toon.spec_role %>
-  <%= tag.status %>
-  <%= link_to 'accept', tag_path(tag, status: :accepted), method: :patch %>
-  <%= link_to 'refuse', tag_path(tag, status: :refused), method: :patch %>
-  <%= link_to tag_path(tag), method: :delete do %>
-      <i class="fa fa-trash"></i>
-  <% end %>
-<% end %>
+<div class="raid-show">
+  <div class="raid-show-title">
+    <h1><%= "#{@raid.dungeon.name} #{@raid.difficulty}" %></h1>
+    <h3><%= "#{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %></h3>
+  </div>
+  <div class="raid-show-tags">
+    <div class="raid-show-tags-pending">
+      <div class="raid-show-tags-pending-title">
+        <h3>Pending</h3>
+      </div>
+      <div class="raid-show-tags-pending-content">
+        <% if @pending_tags.where(toon: current_user.toons).empty? %>
+          <div class="apply">
+            <div class="apply-content">
+              <i class="fa fa-plus-circle"></i>
+              <span>Apply to this raid</span>
+            </div>
+            <%= link_to '', new_raid_tag_path(@raid) %>
+          </div>
+        <% else %>
+          <%= render 'pending_tags' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="raid-show-tags-accepted">
+      <div class="raid-show-tags-accepted-title">
+        <h3>Roster</h3>
+      </div>
+      <div class="raid-show-tags-accepted-content"></div>
+    </div>
+  </div>
+</div>

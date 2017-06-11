@@ -3,7 +3,11 @@ class RaidsController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    tags = @raid.tags
+    @pending_tags = tags.where(status: 0)
+    @accepted_tags = tags.where(status: 1)
+  end
 
   def new
     @raid = Raid.new
