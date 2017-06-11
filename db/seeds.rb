@@ -51,7 +51,8 @@ dungeons = Dungeon.all
   new_raid_infos[:dungeon] = dungeons.sample
   new_raid_infos[:date] = Time.now + rand(-10..5).day
   new_raid_infos[:difficulty] = rand(0..2)
-  new_raid_infos[:leader] = User.first
+  new_raid_infos[:faction] = rand(0..1)
+  new_raid_infos[:leader] = Toon.first
   Raid.create!(new_raid_infos)
   print "seeded raid #{i + 1}..."
 end

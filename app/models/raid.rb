@@ -1,7 +1,8 @@
 class Raid < ApplicationRecord
   belongs_to :dungeon
-  belongs_to :leader, class_name: :User, foreign_key: :leader_id
-  has_many :tags
+  belongs_to :leader, class_name: :Toon, foreign_key: :leader_id
+
+  has_many :tags, dependent: :destroy
 
   validates :dungeon, :date, :faction, presence: true
 
