@@ -1,5 +1,9 @@
-<%= simple_form_for @toon do |f| %>
-  <%= f.input :name, required: true %>
-  <%= f.association :realm %>
-  <%= button_tag %>
-<% end %>
+<div class="devise">
+  <div class="devise-content">
+    <%= simple_form_for @toon do |f| %>
+    <%= f.input :name, required: true %>
+    <%= f.association :realm %>
+    <%= f.submit 'Import', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
