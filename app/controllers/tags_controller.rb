@@ -8,12 +8,11 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(
-      toon: Toon.find(tag_params[:toon_id]),
-      raid: @raid
+    @raid.tags.new(
+      toon: Toon.find(tag_params[:toon_id])
     )
-    if @tag.save
-      redirect_to root_path
+    if @raid.save
+      redirect_to @raid
     else
       render :new
     end
@@ -22,14 +21,10 @@ class TagsController < ApplicationController
   def update
     @tag.status = params[:status]
     @tag.save
-    @raid = @tag.raid
-    redirect_to @raid
   end
 
   def destroy
-    @raid = @tag.raid
     @tag.destroy
-    redirect_to @raid
   end
 
   private
