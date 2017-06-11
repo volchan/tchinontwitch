@@ -11,11 +11,12 @@ class RaidsController < ApplicationController
   end
 
   def create
-    dungeon = Dungeon.find(raid_params[:dungeon]) unless raid_params[:dungeon] == ''
+    dungeon = Dungeon.find(raid_params[:dungeon_id]) if raid_params[:dungeon].nil?
     raid_infos = {}
     raid_infos[:dungeon] = dungeon
     raid_infos[:difficulty] = raid_params[:difficulty].to_i
-    raid_infos[:date] = Time.parse(raid_params[:date]) unless raid_params[:date] == 'Y/m/d H:i'
+    raid_infos[:faction] = raid_params[:faction].to_i
+    raid_infos[:date] = Time.parse(raid_params[:date]) unless raid_params[:date] == ''
     raid_infos[:leader] = current_user
     @raid = Raid.new(raid_infos)
     if @raid.save
@@ -37,6 +38,6 @@ class RaidsController < ApplicationController
   end
 
   def raid_params
-    params.require(:raid).permit(:dungeon, :difficulty, :date)
+    params.require(:raid).permit(:dungeon_id, :difficulty, :faction, :date)
   end
 end
