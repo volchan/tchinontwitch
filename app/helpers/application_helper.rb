@@ -19,6 +19,16 @@ module ApplicationHelper
     "https://worldofwarcraft.com/fr-fr/character/#{toon.realm.slug}/#{toon.name.downcase}"
   end
 
+  def user_raids(user)
+    past_raids = 0
+    user.toons.each do |toon|
+      toon.tags.where(status: 1).each do |tag|
+        past_raids += 1 if tag.raid.date <= Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      end
+    end
+    past_raids
+  end
+
   def raid_difficulty_display(raid)
     case raid.difficulty
     when 'normal' then '(N)'

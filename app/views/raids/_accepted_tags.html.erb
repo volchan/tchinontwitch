@@ -2,7 +2,7 @@
   <div class="accepted-card">
     <div class="accepted-card-img" style="<%= toon_picture(tag.toon) %>"></div>
     <div class="accepted-card-infos">
-      <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level}" %></p>
+      <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
       <div>
         <%= class_img(tag.toon) %>
         <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
