@@ -16,12 +16,13 @@ class RaidsController < ApplicationController
 
   def create
     dungeon = Dungeon.find(raid_params[:dungeon_id]) if raid_params[:dungeon].nil?
+    leader = Toon.find(raid_params[:leader_id].to_i)
     raid_infos = {}
     raid_infos[:dungeon] = dungeon
     raid_infos[:difficulty] = raid_params[:difficulty].to_i
     raid_infos[:faction] = raid_params[:faction].to_i
     raid_infos[:date] = Time.parse(raid_params[:date]) unless raid_params[:date] == ''
-    raid_infos[:leader] = current_user
+    raid_infos[:leader] = leader
     @raid = Raid.new(raid_infos)
     if @raid.save
       redirect_to root_path
@@ -42,6 +43,6 @@ class RaidsController < ApplicationController
   end
 
   def raid_params
-    params.require(:raid).permit(:dungeon_id, :difficulty, :faction, :date)
+    params.require(:raid).permit(:dungeon_id, :difficulty, :faction, :date, :leader_id)
   end
 end

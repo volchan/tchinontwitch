@@ -1,5 +1,5 @@
 .pending-card {
-  height: 10%;
+  height: 15%;
   margin: 10px;
   display: flex;
   border-radius: 4px;
@@ -20,6 +20,10 @@
     justify-content: center;
     p {
       margin: 0;
+      font-size: small;
+    }
+    span {
+      font-size: small;
     }
     img {
       width: 18px;

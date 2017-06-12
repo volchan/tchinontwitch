@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :validatable, authentication_keys: [:login]
 
   has_many :toons, dependent: :destroy
+  has_many :tags, through: :toons
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
