@@ -4,7 +4,7 @@
   justify-content: space-around;
   align-items: center;
   .tchin {
-    height: 80%;
+    height: 70%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -13,6 +13,10 @@
       display: flex;
       width: 80%;
       justify-content: space-around;
+      .discord {
+        height: 18px;
+        width: 18px;
+      }
     }
     &-content {
       p {
@@ -26,7 +30,7 @@
     }
   }
   .volchan {
-    height: 80%;
+    height: 70%;
     display: flex;
     align-items: center;
     flex-direction: column;

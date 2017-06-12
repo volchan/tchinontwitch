@@ -6,7 +6,7 @@
   <div class="raid-show-tags">
     <div class="raid-show-tags-pending">
       <div class="raid-show-tags-pending-title">
-        <h3>Pending</h3>
+        <h3>Pending(<span class="pending-count">0</span>)</h3>
       </div>
       <div class="raid-show-tags-pending-content">
         <% if @pending_tags.where(toon: current_user.toons).empty? || @raid.tags.where(toon: current_user.toons).empty? %>
@@ -32,3 +32,11 @@
     </div>
   </div>
 </div>
+
+<%= content_for :after_js do %>
+  <script type="text/javascript">
+    $('.pending-count').text(
+      $('.raid-show-tags-pending-content').find('.pending-card').length
+    );
+  </script>
+<% end %>
