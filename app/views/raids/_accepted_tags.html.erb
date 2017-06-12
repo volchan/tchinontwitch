@@ -1,0 +1,35 @@
+<% @accepted_tags.each do |tag| %>
+  <div class="accepted-card">
+    <div class="accepted-card-img" style="<%= toon_picture(tag.toon) %>"></div>
+    <div class="accepted-card-infos">
+      <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level}" %></p>
+      <div>
+        <%= class_img(tag.toon) %>
+        <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
+          <%= spec_role_img(tag.toon.spec_role) %>
+          <%= "#{tag.toon.spec_role.downcase}, ilvl : #{tag.toon.i_level}" %>
+          <%= link_to toon_armory(tag.toon), target: :_blank do %>
+            <i class="fa fa-link"></i>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <div class="pending-card-btns">
+      <% if current_user == @raid.leader.user %>
+        <div class="fake-div-status"></div>
+        <%= link_to tag_path(tag, status: 0), method: :patch do %>
+          <i class="cancel fa fa-refresh"></i>
+        <% end %>
+      <% else %>
+        <div class="fake-div-status"></div>
+      <% end %>
+      <% if current_user == tag.toon.user %>
+        <%= link_to tag_path(tag), method: :delete do %>
+          <i class="delete fa fa-trash"></i>
+        <% end %>
+      <% else %>
+        <div class="fake-div"></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

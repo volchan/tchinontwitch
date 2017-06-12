@@ -9,7 +9,7 @@
         <h3>Pending</h3>
       </div>
       <div class="raid-show-tags-pending-content">
-        <% if @pending_tags.where(toon: current_user.toons).empty? %>
+        <% if @pending_tags.where(toon: current_user.toons).empty? || @raid.tags.where(toon: current_user.toons).empty? %>
           <div class="apply">
             <div class="apply-content">
               <i class="fa fa-plus-circle"></i>
@@ -26,7 +26,9 @@
       <div class="raid-show-tags-accepted-title">
         <h3>Roster</h3>
       </div>
-      <div class="raid-show-tags-accepted-content"></div>
+      <div class="raid-show-tags-accepted-content">
+        <%= render 'accepted_tags' %>
+      </div>
     </div>
   </div>
 </div>
