@@ -1,1 +1,46 @@
-// Your footer style
+.footer {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .tchin {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    &-socials {
+      display: flex;
+      width: 80%;
+      justify-content: space-around;
+    }
+    &-content {
+      p {
+        margin: 0;
+        font-size: 12px;
+      }
+      i {
+        font-size: 9px;
+        vertical-align: text-top;
+      }
+    }
+  }
+  .volchan {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    &-socials {
+      display: flex;
+      width: 80%;
+      justify-content: space-around;
+    }
+    &-content {
+      p {
+        margin: 0;
+        font-size: 12px;
+      }
+    }
+  }
+}
