@@ -3,7 +3,11 @@
   flex: 1;
   flex-direction: column;
   &-content {
-    flex: 8;
+    flex: 7.5;
     display: flex;
+  }
+  &-footer {
+    flex: 1;
+    background-color: red;
   }
 }
