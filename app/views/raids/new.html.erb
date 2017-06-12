@@ -3,9 +3,9 @@
     <%= simple_form_for @raid do |f| %>
     <%= f.association :dungeon, collection: Dungeon.all.order(name: :asc), required: true %>
     <%= f.input :faction, collection: Raid.factions, selected: 1, required: true %>
-    <%= f.association :leader, collection: Toon.where(user: current_user).order(name: :asc) %>
+    <%= f.association :leader, collection: Toon.where(user: current_user).order(name: :asc), default: 1 %>
     <%= f.input :difficulty, collection: Raid.difficulties, selected: 0, required: true %>
-    <%= f.input :date, input_html: { class: 'datetimepicker' }, placeholder: 'Y/m/d H:i', required: true %>
+    <%= f.input :date, input_html: { class: 'datetimepicker' }, placeholder: 'Y/m/d HH:ii', required: true %>
     <%= f.submit 'Create raid', class: 'btn btn-primary' %>
     <% end %>
 
@@ -13,7 +13,9 @@
     <script>
     $(document).ready(function(){
       $('.datetimepicker').datetimepicker({
-        step: 30,
+        minuteStep: 10,
+        autoclose: true,
+        pickerPosition: "top-left"
       });
     });
     </script>

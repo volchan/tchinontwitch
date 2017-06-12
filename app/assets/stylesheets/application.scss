@@ -5,8 +5,7 @@
 // External libraries
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
-@import 'bootstrap-datepicker';
-@import 'datetimepicker';
+@import 'smalot-bootstrap-datetimepicker';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import 'vendor/index';
@@ -28,4 +27,8 @@ body {
   background: linear-gradient(to top, #151515, #191919);
   color: white;
   text-shadow: 1px 0 3px rgba(0, 0, 0, .25);
+  div.datetimepicker.datetimepicker-dropdown-top-left.dropdown-menu {
+    color: #333;
+    text-shadow: none;
+  }
 }

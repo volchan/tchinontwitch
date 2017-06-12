@@ -15,7 +15,7 @@ class RaidsController < ApplicationController
   end
 
   def create
-    dungeon = Dungeon.find(raid_params[:dungeon_id]) if raid_params[:dungeon].nil?
+    dungeon = Dungeon.find(raid_params[:dungeon_id]) unless raid_params[:dungeon].nil?
     leader = Toon.find(raid_params[:leader_id].to_i)
     raid_infos = {}
     raid_infos[:dungeon] = dungeon

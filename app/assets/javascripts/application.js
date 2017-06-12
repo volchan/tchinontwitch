@@ -2,6 +2,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require moment
-//= require datetimepicker
-//= require bootstrap-datepicker
+//= require smalot-bootstrap-datetimepicker
 //= require_tree .
