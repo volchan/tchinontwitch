@@ -73,14 +73,23 @@
           }
         }
         &-tanks {
+          height: auto;
+          margin-top: -5px;
+          margin-bottom: 5px;
           display: flex;
           flex-wrap: wrap;
         }
         &-heals {
+          height: auto;
+          margin-top: -5px;
+          margin-bottom: 5px;
           display: flex;
           flex-wrap: wrap;
         }
         &-dps {
+          flex: 1;
+          margin-top: -5px;
+          margin-bottom: 5px;
           display: flex;
           flex-wrap: wrap;
         }

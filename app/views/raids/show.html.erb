@@ -32,23 +32,28 @@
     </div>
     <div class="raid-show-tags-accepted">
       <div class="raid-show-tags-accepted-title">
-        <h3>Roster</h3>
+        <h3>
+          Roster &nbsp <%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/7/7e/Icon-class-role-tank-42x42.png', style: 'width: 27px;' %>
+          <span class="tanks">0</span> <%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/0/07/Icon-class-role-healer-42x42.png', style: 'width: 27px;' %>
+          <span class="heals">0</span> <%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/3/3f/Icon-class-role-dealer-42x42.png', style: 'width: 27px;' %>
+          <span class="dps">0</span>
+        </h3>
       </div>
       <div class="raid-show-tags-accepted-content">
         <div class="raid-show-tags-accepted-content-title">
-          <p>Tanks</p>
+          <p> <span><%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/7/7e/Icon-class-role-tank-42x42.png', style: 'width: 20px; vertical-align: sub;' %></span> Tanks</p>
         </div>
         <div class="raid-show-tags-accepted-content-tanks">
           <%= render partial: 'accepted_tags', locals: { tags: @tank_tags} %>
         </div>
         <div class="raid-show-tags-accepted-content-title">
-          <p>Heals</p>
+          <p> <span><%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/0/07/Icon-class-role-healer-42x42.png', style: 'width: 20px; vertical-align: sub;' %></span> Heals</p>
         </div>
         <div class="raid-show-tags-accepted-content-heals">
           <%= render partial: 'accepted_tags', locals: { tags: @heal_tags} %>
         </div>
         <div class="raid-show-tags-accepted-content-title">
-          <p>Dps</p>
+          <p> <span><%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/3/3f/Icon-class-role-dealer-42x42.png', style: 'width: 20px; vertical-align: sub;' %></span> Dps</p>
         </div>
         <div class="raid-show-tags-accepted-content-dps">
           <%= render partial: 'accepted_tags', locals: { tags: @dps_tags} %>
