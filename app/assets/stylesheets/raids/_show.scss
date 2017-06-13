@@ -73,14 +73,14 @@
           }
         }
         &-tanks {
-          height: auto;
+          min-height: 140px;
           margin-top: -5px;
           margin-bottom: 5px;
           display: flex;
           flex-wrap: wrap;
         }
         &-heals {
-          height: auto;
+          min-height: 140px;
           margin-top: -5px;
           margin-bottom: 5px;
           display: flex;

@@ -68,5 +68,14 @@
     $('.pending-count').text(
       $('.raid-show-tags-pending-content').find('.pending-card').length
     );
+    $('.tanks').text(
+    	$('.raid-show-tags-accepted-content-tanks').children().length
+    );
+    $('.heals').text(
+    	$('.raid-show-tags-accepted-content-heals').children().length
+    );
+    $('.dps').text(
+    	$('.raid-show-tags-accepted-content-dps').children().length
+    );
   </script>
 <% end %>
