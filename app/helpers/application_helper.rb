@@ -41,6 +41,10 @@ module ApplicationHelper
     end
   end
 
+  def raid_slots(raid)
+    "(#{raid.tags.where(status: 1).count}/30)"    
+  end
+
   def faction_pic(instance)
     instance.faction == 'alliance' ? 'http://wow.zamimg.com/images/icons/alliance.png' : 'http://wow.zamimg.com/images/icons/horde.png'
   end
