@@ -13,9 +13,14 @@
       display: flex;
       width: 80%;
       justify-content: space-around;
-      .discord {
+      a.discord {
         height: 18px;
         width: 18px;
+        background-size: cover;
+        background-image: image-url('discord-yellow.png');
+        &:hover {
+          background-image: image-url('discord-yellow-darker.png');
+        }
       }
     }
     &-content {
