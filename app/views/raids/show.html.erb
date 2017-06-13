@@ -35,7 +35,24 @@
         <h3>Roster</h3>
       </div>
       <div class="raid-show-tags-accepted-content">
-        <%= render 'accepted_tags' %>
+        <div class="raid-show-tags-accepted-content-title">
+          <p>Tanks</p>
+        </div>
+        <div class="raid-show-tags-accepted-content-tanks">
+          <%= render partial: 'accepted_tags', locals: { tags: @tank_tags} %>
+        </div>
+        <div class="raid-show-tags-accepted-content-title">
+          <p>Heals</p>
+        </div>
+        <div class="raid-show-tags-accepted-content-heals">
+          <%= render partial: 'accepted_tags', locals: { tags: @heal_tags} %>
+        </div>
+        <div class="raid-show-tags-accepted-content-title">
+          <p>Dps</p>
+        </div>
+        <div class="raid-show-tags-accepted-content-dps">
+          <%= render partial: 'accepted_tags', locals: { tags: @dps_tags} %>
+        </div>
       </div>
     </div>
   </div>

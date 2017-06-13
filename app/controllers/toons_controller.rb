@@ -47,18 +47,19 @@ class ToonsController < ApplicationController
     bnet_api_call = RestClient.get(bnet_url)
     parsed_api_call = JSON.parse(bnet_api_call)
     toon_spec = parsed_api_call['talents'].find('selected').first['spec']
-    @toon.class_id = parsed_api_call['class']
-    @toon.race_id = parsed_api_call['race']
-    @toon.level = parsed_api_call['level']
-    @toon.i_level = parsed_api_call['items']['averageItemLevelEquipped']
-    @toon.thumbnail = parsed_api_call['thumbnail']
-    @toon.faction = parsed_api_call['faction']
-    @toon.guild_name = parsed_api_call['guild'].try(:[], 'name')
-    @toon.guild_realm = parsed_api_call['guild'].try(:[], 'realm')
-    @toon.spec_name = toon_spec['name']
-    @toon.spec_role = toon_spec['role']
-    @toon.spec_icon = toon_spec['icon']
-    @toon.save
+    @toon.update(
+      class_id: parsed_api_call['class'],
+      race_id: parsed_api_call['race'],
+      level: parsed_api_call['level'],
+      i_level: parsed_api_call['items']['averageItemLevelEquipped'],
+      thumbnail: parsed_api_call['thumbnail'],
+      faction: parsed_api_call['faction'],
+      guild_name: parsed_api_call['guild'].try(:[], 'name'),
+      guild_realm: parsed_api_call['guild'].try(:[], 'realm'),
+      spec_name: toon_spec['name'],
+      spec_role: toon_spec['role'],
+      spec_icon: toon_spec['icon']
+    )
     redirect_to toons_path
   end
 

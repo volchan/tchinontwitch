@@ -3,6 +3,10 @@ module ApplicationHelper
     "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://render-eu.worldofwarcraft.com/character/#{toon.thumbnail}');"
   end
 
+  def toon_picture_accepted(toon)
+    "background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0.9)), url('https://render-eu.worldofwarcraft.com/character/#{toon.thumbnail.gsub('avatar', 'main')}');"
+  end
+
   def class_img(toon)
     image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg"
   end
