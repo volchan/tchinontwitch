@@ -15,7 +15,7 @@ class RaidsController < ApplicationController
   end
 
   def create
-    dungeon = Dungeon.find(raid_params[:dungeon_id]) unless raid_params[:dungeon].nil?
+    dungeon = Dungeon.find_by(id: raid_params[:dungeon_id])
     leader = Toon.find(raid_params[:leader_id].to_i)
     raid_infos = {}
     raid_infos[:dungeon] = dungeon
@@ -25,7 +25,8 @@ class RaidsController < ApplicationController
     raid_infos[:leader] = leader
     @raid = Raid.new(raid_infos)
     if @raid.save
-      redirect_to root_path
+      @raid.tags.create(toon: leader, status: 1)
+      redirect_to @raid
     else
       render :new
     end

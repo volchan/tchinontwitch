@@ -9,7 +9,7 @@
         <h3>Pending(<span class="pending-count">0</span>)</h3>
       </div>
       <div class="raid-show-tags-pending-content">
-        <% if @pending_tags.where(toon: current_user.toons).empty? || @raid.tags.where(toon: current_user.toons).empty? %>
+        <% if @pending_tags.where(toon: current_user.toons).empty? && @raid.tags.where(toon: current_user.toons).empty? %>
           <div class="apply">
             <div class="apply-content">
               <i class="fa fa-plus-circle"></i>
@@ -18,7 +18,15 @@
             <%= link_to '', new_raid_tag_path(@raid) %>
           </div>
         <% else %>
-          <%= render 'pending_tags' %>
+          <% if @pending_tags.any? %>
+            <%= render 'pending_tags' %>
+          <% else %>
+            <div class="apply">
+              <div class="apply-content">
+                <span>No applications yet o(╥﹏╥)o</span>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
