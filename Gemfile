@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem 'rest-client'
+gem 'sendgrid-ruby'
 
 gem 'sass-rails'
 gem 'jquery-rails'
