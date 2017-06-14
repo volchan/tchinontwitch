@@ -1,3 +1,5 @@
+<% content_for :title, "#{@raid.dungeon.name} #{@raid.difficulty} | #{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %>
+
 <div class="raid-show">
   <div class="raid-show-title">
     <h1><%= "#{@raid.dungeon.name} #{@raid.difficulty}" %></h1>

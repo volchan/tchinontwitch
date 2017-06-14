@@ -1,3 +1,5 @@
+<% content_for :title, "Apply to #{@raid.dungeon.name} #{@raid.difficulty}" %>
+
 <div class="devise">
   <div class="devise-content">
     <%= simple_form_for [@raid, @tag] do |f| %>

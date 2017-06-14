@@ -42,7 +42,7 @@ module ApplicationHelper
   end
 
   def raid_slots(raid)
-    "(#{raid.tags.where(status: 1).count}/30)"    
+    "(#{raid.tags.where(status: 1).count}/30)"
   end
 
   def faction_pic(instance)
