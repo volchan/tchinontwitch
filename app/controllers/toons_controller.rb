@@ -14,7 +14,7 @@ class ToonsController < ApplicationController
 
   def create
     call_params = toons_params
-    realm = Realm.find(call_params['realm_id'])
+    realm = Realm.find_by(id: call_params['realm_id'])
     bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{realm.slug}/#{call_params['name']}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
     bnet_api_call = RestClient.get(bnet_url)
     parsed_api_call = JSON.parse(bnet_api_call)
