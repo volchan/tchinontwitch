@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://tchinontwitch.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "smtp.sendgrid.net" }
   ActionMailer::Base.smtp_settings = {
     :user_name            => ENV['SENDGRID_USERNAME'],
     :password             => ENV['SENDGRID_PASSWORD'],
@@ -7,7 +7,7 @@ Rails.application.configure do
     :port                 => 587,
     :enable_starttls_auto => true,
     :authentication       => :plain,
-    :domain               => "yourdomain.com"
+    :domain               => "heroku.com"
   }
 
   # Settings specified here will take precedence over those in config/application.rb.
