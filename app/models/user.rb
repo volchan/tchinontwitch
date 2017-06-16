@@ -8,8 +8,6 @@ class User < ApplicationRecord
   has_many :toons, dependent: :destroy
   has_many :tags, through: :toons
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
-
   attr_accessor :login
 
   def login=(login)

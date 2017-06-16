@@ -4,14 +4,11 @@ class TagsController < ApplicationController
 
   def new
     @tag = Tag.new
-    @toons = Toon.where(user: current_user).order(name: :asc)
   end
 
   def create
-    @raid.tags.new(
-      toon: Toon.find(tag_params[:toon_id])
-    )
-    if @raid.save
+    @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), raid: @raid)
+    if @tag.save
       redirect_to @raid
     else
       render :new
