@@ -7,6 +7,8 @@ class Tag < ApplicationRecord
   validates :toon, uniqueness: { scope: :raid_id, message: 'You allready applied with this character' }
   validate :uniqueness_users
 
+  after_create :publish_pending_on_cable
+
   private
 
   def uniqueness_users
@@ -17,4 +19,11 @@ class Tag < ApplicationRecord
     end
   end
 
+  def publish_pending_on_cable
+    ActionCable.server.broadcast(
+      "raid_#{self.raid.id}",
+      # html: ApplicationController.renderer.render(partial: 'raids/pending_card', locals: { tag: self, user: self.toon.user.id }, layout: false)
+      json: self.to_json
+    )
+  end
 end

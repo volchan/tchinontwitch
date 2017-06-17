@@ -48,4 +48,8 @@ module ApplicationHelper
   def faction_pic(instance)
     instance.faction == 'alliance' ? 'http://wow.zamimg.com/images/icons/alliance.png' : 'http://wow.zamimg.com/images/icons/horde.png'
   end
+
+  def find_last_tag
+    Tag.last
+  end
 end
