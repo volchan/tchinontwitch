@@ -22,8 +22,7 @@ class Tag < ApplicationRecord
   def publish_pending_on_cable
     ActionCable.server.broadcast(
       "raid_#{self.raid.id}",
-      # html: ApplicationController.renderer.render(partial: 'raids/pending_card', locals: { tag: self, user: self.toon.user.id }, layout: false)
-      json: self.to_json
+      raid_id: self.raid.id
     )
   end
 end

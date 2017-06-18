@@ -1,0 +1,36 @@
+<div class="pending-card">
+  <div class="pending-card-img" style="<%= toon_picture(tag.toon) %>"></div>
+  <div class="pending-card-infos">
+    <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
+    <div>
+      <%= class_img(tag.toon) %>
+      <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
+        <%= spec_role_img(tag.toon.spec_role) %>
+        <%= "#{tag.toon.spec_role.downcase}, ilvl : #{tag.toon.i_level}" %>
+        <%= link_to toon_armory(tag.toon), target: :_blank do %>
+          <i class="fa fa-link"></i>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  <div class="pending-card-btns">
+    <% if user == raid.leader.user %>
+      <%= link_to tag_path(tag, status: 1), method: :patch do %>
+        <i class="accept fa fa-check-circle"></i>
+      <% end %>
+      <%= link_to tag_path(tag, status: 2), method: :patch do %>
+        <i class="refuse fa fa-times-circle"></i>
+      <% end %>
+    <% else %>
+      <div class="fake-div-status"></div>
+      <div class="fake-div-status"></div>
+    <% end %>
+    <% if user == tag.toon.user %>
+      <%= link_to tag_path(tag), method: :delete do %>
+        <i class="delete fa fa-trash"></i>
+      <% end %>
+    <% else %>
+      <div class="fake-div"></div>
+    <% end %>
+  </div>
+</div>

@@ -1,3 +1,3 @@
 <% @pending_tags.each do |tag| %>
-  <%= render partial: 'pending_card', locals: { tag: tag } %>
+  <%= render 'pending_card', tag: tag %>
 <% end %>

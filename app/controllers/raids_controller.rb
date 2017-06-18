@@ -1,6 +1,8 @@
 class RaidsController < ApplicationController
   before_action :find_raid, only: %i[show destroy]
 
+  skip_before_action :authenticate_user!, only: :render_cable_card
+
   def index; end
 
   def show
@@ -48,6 +50,14 @@ class RaidsController < ApplicationController
   def destroy
     @raid.destroy
     redirect_to root_path
+  end
+
+  def render_cable_card
+    respond_to do |format|
+      @raid = Raid.find('118')
+      @user = current_user
+      format.js
+    end
   end
 
   private

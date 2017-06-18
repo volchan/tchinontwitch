@@ -8,7 +8,6 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), raid: @raid)
-    @user = current_user
     if @tag.save
       redirect_to @raid
     else

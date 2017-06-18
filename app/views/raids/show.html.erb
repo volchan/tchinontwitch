@@ -97,9 +97,33 @@
           console.log("[CONNECTED]");
         },
         received: function(data) {
-          console.log(data.json);
-          var json = data.json
-          $('.raid-show-tags-pending-content').append("<%= j render 'raids/pending_card' %>");
+          console.log(data.raid_id);
+          $.ajax({
+            type: "GET",
+            url: "/raids/" + data.raid_id + "/render_cable_card",
+            success: function(data) {
+              console.log(data);
+            },
+            error: function(jqXHR) {
+              console.error(jqXHR.responseText);
+            }
+          });
+        }
+      }
+    );
+  </script>
+  <script>
+    App.cable.subscriptions.create(
+      {
+        channel: "CardChannel",
+        raid_id: <%= @raid.id %>
+      },
+      {
+        connected: function(data) {
+          console.log("[CONNECTED to card channel]");
+        },
+        received: function(data) {
+          console.log(data.html);
         }
       }
     );
