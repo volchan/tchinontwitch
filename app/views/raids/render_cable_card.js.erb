@@ -1,2 +1,3 @@
 <% card = ApplicationController.renderer.render(partial: "raids/pending_cable_card", locals: { user: @user, tag: @raid.tags.last, raid: @raid }, layout: false) %>
-$('.raid-show-tags-pending-content').append('<%= ApplicationController.renderer.render(html: card) %>')
+$('.raid-show-tags-pending-content').append('<%= j render(html: card) %>');
+$('.raid-show-tags-pending-content').children().last().hide().slideDown('fast');

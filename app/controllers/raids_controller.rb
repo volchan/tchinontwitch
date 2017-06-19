@@ -54,7 +54,7 @@ class RaidsController < ApplicationController
 
   def render_cable_card
     respond_to do |format|
-      @raid = Raid.find('118')
+      @raid = Raid.find(params[:raid_id])
       @user = current_user
       format.js
     end
