@@ -1,6 +1,6 @@
 class CardChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "card_#{params[:raid_id]}"
+    stream_from "roster_#{params[:raid_id]}"
   end
 
   def unsubscribed

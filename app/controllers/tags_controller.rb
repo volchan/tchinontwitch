@@ -8,6 +8,7 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), raid: @raid)
+    @tag.validate_user == true
     if @tag.save
       redirect_to @raid
     else
@@ -16,6 +17,7 @@ class TagsController < ApplicationController
   end
 
   def update
+    raise
     @tag.status = params[:status].to_i
     @tag.save
   end

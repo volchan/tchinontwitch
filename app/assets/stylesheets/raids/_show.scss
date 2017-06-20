@@ -8,6 +8,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    &-name {
+      position: relative;
+    }
+    img {
+      top: 8px;
+      left: -21px;
+      position: absolute;
+    }
     h1 {
       margin: 0;
       font-size: 2em;

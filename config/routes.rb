@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :toons, only: %i[index new create update destroy]
   resources :raids, shallow: true do
     get :render_cable_card
+    get :show_roster_list
     resources :tags, only: %i[new create update destroy]
   end
 end

@@ -2,8 +2,12 @@
 
 <div class="raid-show">
   <div class="raid-show-title">
-    <h1><%= "#{@raid.dungeon.name} #{@raid.difficulty}" %></h1>
+    <div class="raid-show-title-name">
+      <h1><%= "#{@raid.dungeon.name} #{@raid.difficulty}" %></h1>
+      <%= image_tag faction_pic(@raid) %>
+    </div>
     <h3><%= "#{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %></h3>
+
   </div>
   <div class="raid-show-tags">
     <div class="raid-show-tags-pending">
@@ -11,7 +15,7 @@
         <h3>Pending(<span class="pending-count">0</span>)</h3>
       </div>
       <div class="raid-show-tags-pending-content">
-        <% if @pending_tags.where(toon: current_user.toons).empty? && @raid.tags.where(toon: current_user.toons).empty? %>
+        <% if @pending_tags.where(toon: current_user.toons).empty? %>
           <div class="apply">
             <div class="apply-content">
               <i class="fa fa-plus-circle"></i>
@@ -19,16 +23,15 @@
             </div>
             <%= link_to '', new_raid_tag_path(@raid) %>
           </div>
+        <% end %>
+        <% if @pending_tags.any? %>
+          <%= render 'pending_tags' %>
         <% else %>
-          <% if @pending_tags.any? %>
-            <%= render 'pending_tags' %>
-          <% else %>
-            <div class="apply">
-              <div class="apply-content">
-                <span>No applications yet o(╥﹏╥)o</span>
-              </div>
+          <div class="apply">
+            <div class="apply-content">
+              <span>No applications yet o(╥﹏╥)o</span>
             </div>
-          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -40,6 +43,10 @@
           <span class="heals">0</span> <%= image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/3/3f/Icon-class-role-dealer-42x42.png', style: 'width: 27px;' %>
           <span class="dps">0</span>
         </h3>
+        &nbsp
+        <% if current_user.admin %>
+          <span id="roster-btn" data-raid="<%= @raid.id %>" class="btn btn-xs btn-primary" style="text-shadow: none">Export</span>
+        <% end %>
       </div>
       <div class="raid-show-tags-accepted-content">
         <div class="raid-show-tags-accepted-content-title">
@@ -63,6 +70,22 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="roster-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Roster for <%= "#{@raid.dungeon.name} #{@raid.difficulty}"%></h4>
+          <p><%= "#{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %></p>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= content_for :after_js do %>
@@ -70,21 +93,32 @@
     $('.pending-count').text(
       $('.raid-show-tags-pending-content').find('.pending-card').length
     );
+
     $('.tanks').text(
     	$('.raid-show-tags-accepted-content-tanks').children().length
     );
+
     $('.heals').text(
     	$('.raid-show-tags-accepted-content-heals').children().length
     );
+
     $('.dps').text(
     	$('.raid-show-tags-accepted-content-dps').children().length
     );
-    $currentUserAdmin = <%= current_user.admin %>
-    if (!$currentUserAdmin) {
-      $('.accept-link').replaceWith('<div class="fake-div-status"></div>');
-      $('.refuse-link').replaceWith('<div class="fake-div-status"></div>');
-      }
 
+    $('#roster-btn').on('click', function() {
+      console.log($(this).data('raid'));
+      $.ajax({
+        type: "GET",
+        url: "/raids/" + $(this).data('raid') + "/show_roster_list",
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(jqXHR) {
+          console.error(jqXHR.responseText);
+        }
+      });
+    });
   </script>
   <script>
     App.cable.subscriptions.create(
@@ -115,15 +149,15 @@
   <script>
     App.cable.subscriptions.create(
       {
-        channel: "CardChannel",
+        channel: "RosterChannel",
         raid_id: <%= @raid.id %>
       },
       {
         connected: function(data) {
-          console.log("[CONNECTED to card channel]");
+          console.log("[CONNECTED to Roster channel]");
         },
         received: function(data) {
-          console.log(data.html);
+          console.log(data.raid_id);
         }
       }
     );

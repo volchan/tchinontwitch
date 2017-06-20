@@ -1,0 +1,5 @@
+$('.modal-body').html('');
+<% string = ApplicationController.renderer.render(partial: 'raids/roster_string', locals: { names: @roster_toons_names }, layout: false) %>;
+$('.modal-body').append("<%= j render(html: string) %>");
+$('.modal-content').addClass('bordered');
+$('#roster-modal').addClass('text-black no-text-shadow').modal();

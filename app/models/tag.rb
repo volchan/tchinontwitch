@@ -5,9 +5,11 @@ class Tag < ApplicationRecord
   enum status: { pending: 0, accepted: 1, refused: 2 }
 
   validates :toon, uniqueness: { scope: :raid_id, message: 'You allready applied with this character' }
-  validate :uniqueness_users
+  validate :uniqueness_users, if: :validate_user
 
   after_create :publish_pending_on_cable
+
+  attr_accessor :validate_user
 
   private
 
