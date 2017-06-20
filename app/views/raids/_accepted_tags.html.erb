@@ -1,24 +1,3 @@
 <% tags.each do |tag| %>
-  <div class="accepted-card">
-    <% if tag.toon == @raid.leader %>
-      <i class="fa fa-star leader-ico"></i>
-    <% end %>
-    <% if current_user == @raid.leader.user %>
-      <div class="accepted-card-btns">
-        <%= link_to tag_path(tag, status: 0), method: :patch do %>
-          <i class="fa fa-refresh"></i>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="accepted-card-img" style="<%= toon_picture_accepted(tag.toon).gsub('avatar', 'main') %>"></div>
-    <div class="accepted-card-infos">
-      <p>
-        <%= "#{tag.toon.name}" %>
-        <%= link_to toon_armory(tag.toon), target: :_blank do %>
-          <i class="fa fa-link"></i>
-        <% end %>
-      </p>
-      <p><%= "user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
-    </div>
-  </div>
+  <%= render 'accepted_card', tag: tag %>
 <% end %>

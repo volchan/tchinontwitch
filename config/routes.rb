@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :raids, shallow: true do
     get :render_cable_card
     get :show_roster_list
+    get :edit_tag
     resources :tags, only: %i[new create update destroy]
   end
 end

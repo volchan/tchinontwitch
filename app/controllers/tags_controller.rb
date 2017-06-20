@@ -17,7 +17,6 @@ class TagsController < ApplicationController
   end
 
   def update
-    raise
     @tag.status = params[:status].to_i
     @tag.save
   end

@@ -14,7 +14,7 @@ module ApplicationHelper
   def spec_role_img(role)
     case role
     when 'TANK' then image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/7/7e/Icon-class-role-tank-42x42.png'
-    when 'HEALER' then image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/0/07/Icon-class-role-healer-42x42.png'
+    when 'HEALING' then image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/0/07/Icon-class-role-healer-42x42.png'
     when 'DPS' then image_tag 'https://vignette4.wikia.nocookie.net/wowwiki/images/3/3f/Icon-class-role-dealer-42x42.png'
     end
   end

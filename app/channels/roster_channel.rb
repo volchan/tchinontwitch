@@ -1,4 +1,4 @@
-class CardChannel < ApplicationCable::Channel
+class RosterChannel < ApplicationCable::Channel
   def subscribed
     stream_from "roster_#{params[:raid_id]}"
   end

@@ -7,7 +7,8 @@ class Tag < ApplicationRecord
   validates :toon, uniqueness: { scope: :raid_id, message: 'You allready applied with this character' }
   validate :uniqueness_users, if: :validate_user
 
-  after_create :publish_pending_on_cable
+  after_create :publish_on_card_channel
+  after_update :publish_on_roster_channel
 
   attr_accessor :validate_user
 
@@ -21,9 +22,17 @@ class Tag < ApplicationRecord
     end
   end
 
-  def publish_pending_on_cable
+  def publish_pending_on_card_channel
     ActionCable.server.broadcast(
       "raid_#{self.raid.id}",
+      raid_id: self.raid.id
+    )
+  end
+
+  def publish_on_roster_channel
+    ActionCable.server.broadcast(
+    "roster_#{self.raid.id}",
+      tag_id: self.id,
       raid_id: self.raid.id
     )
   end

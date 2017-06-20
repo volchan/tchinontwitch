@@ -1,0 +1,17 @@
+<% if @tag.status == 'pending' %>
+  <% pending_card = ApplicationController.renderer.render(partial: "raids/pending_cable_card", locals: { user: @user, tag: @tag, raid: @raid }, layout: false) %>;
+  $('.raid-show-tags-pending-content').append('<%= j render(html: pending_card) %>');
+  $('.raid-show-tags-pending-content').children().last().hide().slideDown('fast');
+<% elsif @tag.status == 'accepted' %>
+  <% accepted_card = ApplicationController.renderer.render(partial: 'raids/accepted_cable_card', locals: { tag: @tag, user: @user }, layout: false) %>;
+  <% if @tag.toon.spec_role == 'DPS' %>
+    $('.raid-show-tags-accepted-content-dps').append('<%= j render(html: accepted_card) %>');
+    $('.raid-show-tags-accepted-content-dps').children().last().hide().slideDown('fast');
+  <% elsif @tag.toon.spec_role == 'TANK' %>
+    $('.raid-show-tags-accepted-content-tanks').append('<%= j render(html: accepted_card) %>');
+    $('.raid-show-tags-accepted-content-tanks').children().last().hide().slideDown('fast');
+  <% else %>
+    $('.raid-show-tags-accepted-content-heals').append('<%= j render(html: accepted_card) %>');
+    $('.raid-show-tags-accepted-content-heals').children().last().hide().slideDown('fast');
+  <% end %>
+<% end %>

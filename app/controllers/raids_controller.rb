@@ -1,6 +1,6 @@
 class RaidsController < ApplicationController
   before_action :find_raid, only: %i[show destroy]
-  before_action :ajax_find_raid, only: %i[render_cable_card show_roster_list]
+  before_action :ajax_find_raid, only: %i[render_cable_card show_roster_list edit_tag]
 
   skip_before_action :authenticate_user!, only: :render_cable_card
 
@@ -66,6 +66,14 @@ class RaidsController < ApplicationController
       @roster_toons_names = []
       roster_toons = roster_tags.each { |tag| @roster_toons_names << tag.toon.name.downcase + '-' + tag.toon.realm.name.downcase }
       @roster_toons_names
+      format.js
+    end
+  end
+
+  def edit_tag
+    respond_to do |format|
+      @user = current_user
+      @tag = Tag.find(params[:tag_id])
       format.js
     end
   end

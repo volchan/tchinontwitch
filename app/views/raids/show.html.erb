@@ -150,14 +150,30 @@
     App.cable.subscriptions.create(
       {
         channel: "RosterChannel",
-        raid_id: <%= @raid.id %>
+        raid_id: <%= @raid.id %>,
+        event: event
       },
       {
         connected: function(data) {
           console.log("[CONNECTED to Roster channel]");
         },
         received: function(data) {
+          console.log(data.event);
           console.log(data.raid_id);
+          console.log(data.tag_id);
+          $.ajax({
+            type: "GET",
+            url: "/raids/" + data.raid_id + "/edit_tag",
+            data: {
+              tag_id: data.tag_id
+            },
+            success: function(data) {
+              console.log(data);
+            },
+            error: function(jqXHR) {
+              console.error(jqXHR.responseText);
+            }
+          });
         }
       }
     );
