@@ -64,8 +64,10 @@ class RaidsController < ApplicationController
     respond_to do |format|
       roster_tags = @raid.tags.where(status: 1)
       @roster_toons_names = []
-      roster_toons = roster_tags.each { |tag| @roster_toons_names << tag.toon.name.downcase + '-' + tag.toon.realm.name.downcase }
-      @roster_toons_names
+      roster_tags.each do |tag|
+        toon_name = tag.toon.name.downcase + '-' + tag.toon.realm.name.downcase
+        @roster_toons_names << toon_name
+      end
       format.js
     end
   end

@@ -1,4 +1,4 @@
-<% content_for :title, "#{@raid.dungeon.name} #{@raid.difficulty} | #{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %>
+<% content_for :title, "#{@raid.dungeon.name} #{@raid.difficulty} | #{@raid.date.strftime('%A %d %B %Y')} at #{@raid.date.strftime('%H:%M')}" %>
 
 <div class="raid-show">
   <div class="raid-show-title">
@@ -6,7 +6,7 @@
       <h1><%= "#{@raid.dungeon.name} #{@raid.difficulty}" %></h1>
       <%= image_tag faction_pic(@raid) %>
     </div>
-    <h3><%= "#{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %></h3>
+    <h3><%= "#{@raid.date.strftime('%A %d %B %Y')} at #{@raid.date.strftime('%H:%M')}" %></h3>
 
   </div>
   <div class="raid-show-tags">
@@ -72,7 +72,7 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Roster for <%= "#{@raid.dungeon.name} #{@raid.difficulty}"%></h4>
-          <p><%= "#{Time.parse(@raid.date).to_date.strftime('%A %d %B %Y')} at #{Time.parse(@raid.date).strftime('%H:%M')}" %></p>
+          <p><%= "#{@raid.date.strftime('%A %d %B %Y')} at #{@raid.date.strftime('%H:%M')}" %></p>
         </div>
         <div class="modal-body">
         </div>

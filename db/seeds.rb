@@ -2,6 +2,7 @@
 #
 # User.destroy_all
 # Realm.destroy_all
+Tag.destroy_all
 Raid.destroy_all
 #
 # print 'seeding admin...'

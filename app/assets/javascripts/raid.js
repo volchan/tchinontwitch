@@ -54,6 +54,6 @@ function roster_btn_click() {
 $(document).on('ready', function() {
   calc_pending_cards();
   calc_accepted_cards();
-  remove_cards();
+  // remove_cards();
   roster_btn_click();
 });
