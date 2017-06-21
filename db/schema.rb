@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611085818) do
+ActiveRecord::Schema.define(version: 20170621161955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(version: 20170611085818) do
 
   create_table "raids", force: :cascade do |t|
     t.integer  "dungeon_id"
-    t.string   "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "difficulty"
     t.integer  "leader_id"
     t.integer  "faction"
+    t.datetime "date"
     t.index ["dungeon_id"], name: "index_raids_on_dungeon_id", using: :btree
   end
 
