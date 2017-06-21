@@ -10,6 +10,7 @@ gem 'devise'
 gem 'redis'
 gem 'rest-client'
 gem 'sendgrid-ruby'
+gem 'administrate', github: 'thoughtbot/administrate'
 
 gem 'sass-rails'
 gem 'jquery-rails'

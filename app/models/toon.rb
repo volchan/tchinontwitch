@@ -3,7 +3,7 @@ class Toon < ApplicationRecord
   belongs_to :realm
 
   has_many :tags, dependent: :destroy
-  has_many :own_raids, through: :tags, source: :raids
+  # has_many :own_raids, through: :tags, source: :raids
 
   validates :name, uniqueness: true
 

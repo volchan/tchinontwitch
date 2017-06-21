@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :dungeons
+    resources :raids
+    resources :realms
+    resources :tags
+    resources :toons
+
+    root to: "users#index"
+  end
+
   mount ActionCable.server => '/cable'
   devise_for :users
   root to: 'pages#home'
