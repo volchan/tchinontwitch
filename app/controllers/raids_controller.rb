@@ -37,7 +37,7 @@ class RaidsController < ApplicationController
     raid_infos[:dungeon] = dungeon
     raid_infos[:difficulty] = raid_params[:difficulty].to_i
     raid_infos[:faction] = raid_params[:faction].to_i
-    raid_infos[:date] = Time.parse(raid_params[:date]) unless raid_params[:date] == ''
+    raid_infos[:date] = Time.parse("#{raid_params[:date]} +0200") unless raid_params[:date] == ''
     raid_infos[:leader] = leader
     @raid = Raid.new(raid_infos)
     if @raid.save
