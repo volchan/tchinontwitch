@@ -4,6 +4,16 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  .beta {
+    margin-top: -5px;
+    margin-left: -27px;
+    transform: rotate(90deg);
+    h2 {
+      margin: 0;
+      font-size: 1.5em;
+      font-family: $title-font;
+    }
+  }
   &-btn {
     position: absolute;
     top: 10px;
