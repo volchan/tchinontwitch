@@ -9,11 +9,11 @@ class RaidsController < ApplicationController
   def show
     tags = @raid.tags
     @pending_tags = tags.where(status: 0)
-    accepted_tags = tags.where(status: 1)
+    @accepted_tags = tags.where(status: 1)
     dps = []
     heal = []
     tank = []
-    accepted_tags.each do |tag|
+    @accepted_tags.each do |tag|
       case tag.toon.spec_role
       when 'DPS' then dps << tag
       when 'HEALING' then heal << tag

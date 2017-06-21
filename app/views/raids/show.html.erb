@@ -15,7 +15,7 @@
         <h3>Pending(<span class="pending-count">0</span>)</h3>
       </div>
       <div class="raid-show-tags-pending-content">
-        <% if @pending_tags.where(toon: current_user.toons).empty? %>
+        <% if @pending_tags.where(toon: current_user.toons).empty? && @accepted_tags.where(toon: current_user.toons).empty? %>
           <div class="apply">
             <div class="apply-content">
               <i class="fa fa-plus-circle"></i>
@@ -27,11 +27,7 @@
         <% if @pending_tags.any? %>
           <%= render 'pending_tags' %>
         <% else %>
-          <div class="apply">
-            <div class="apply-content">
-              <span>No applications yet o(╥﹏╥)o</span>
-            </div>
-          </div>
+          <%= render 'no_tags_card' %>
         <% end %>
       </div>
     </div>
@@ -89,38 +85,19 @@
 </div>
 
 <%= content_for :after_js do %>
-  <script>
-    $('.pending-count').text(
-      $('.raid-show-tags-pending-content').find('.pending-card').length
-    );
+  <script type="text/javascript">
+    function no_tags_card() {
+      $tag_count = $('.raid-show-tags-pending-content').find('.pending-card').length
+      $apply_card = $('.apply');
+      <% card = ApplicationController.renderer.render(partial: "raids/no_tags_card", layout: false) %>
+      if ($tag_count == 0) {
+        $('.raid-show-tags-pending-content').append('<%= j render(html: card ) %>')
+        $('.apply').hide().slideDown('fast')
+      } else if ($apply_card.is(':visible') && $tag_count > 0) {
+        $('.apply').slideUp('fast').remove()
+      }
+    }
 
-    $('.tanks').text(
-    	$('.raid-show-tags-accepted-content-tanks').children().length
-    );
-
-    $('.heals').text(
-    	$('.raid-show-tags-accepted-content-heals').children().length
-    );
-
-    $('.dps').text(
-    	$('.raid-show-tags-accepted-content-dps').children().length
-    );
-
-    $('#roster-btn').on('click', function() {
-      console.log($(this).data('raid'));
-      $.ajax({
-        type: "GET",
-        url: "/raids/" + $(this).data('raid') + "/show_roster_list",
-        success: function(data) {
-          console.log(data);
-        },
-        error: function(jqXHR) {
-          console.error(jqXHR.responseText);
-        }
-      });
-    });
-  </script>
-  <script>
     App.cable.subscriptions.create(
       {
         channel: "RaidChannel",
@@ -137,6 +114,7 @@
             url: "/raids/" + data.raid_id + "/render_cable_card",
             success: function(data) {
               console.log(data);
+              calc_pending_cards();
             },
             error: function(jqXHR) {
               console.error(jqXHR.responseText);
@@ -145,20 +123,17 @@
         }
       }
     );
-  </script>
-  <script>
+
     App.cable.subscriptions.create(
       {
         channel: "RosterChannel",
         raid_id: <%= @raid.id %>,
-        event: event
       },
       {
         connected: function(data) {
           console.log("[CONNECTED to Roster channel]");
         },
         received: function(data) {
-          console.log(data.event);
           console.log(data.raid_id);
           console.log(data.tag_id);
           $.ajax({
@@ -169,6 +144,9 @@
             },
             success: function(data) {
               console.log(data);
+              calc_pending_cards();
+              calc_accepted_cards();
+              no_tags_card();
             },
             error: function(jqXHR) {
               console.error(jqXHR.responseText);
