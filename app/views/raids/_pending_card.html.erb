@@ -26,7 +26,7 @@
       <div class="fake-div-status"></div>
     <% end %>
     <% if (local_assigns[:user] ? user : current_user) == tag.toon.user %>
-      <%= link_to tag_path(tag), method: :delete do %>
+      <%= link_to tag_path(tag), method: :delete, remote: true do %>
         <i class="delete fa fa-trash"></i>
       <% end %>
     <% else %>

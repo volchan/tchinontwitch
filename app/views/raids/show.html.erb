@@ -16,13 +16,9 @@
       </div>
       <div class="raid-show-tags-pending-content">
         <% if @pending_tags.where(toon: current_user.toons).empty? && @accepted_tags.where(toon: current_user.toons).empty? %>
-          <div class="apply">
-            <div class="apply-content">
-              <i class="fa fa-plus-circle"></i>
-              <span>Apply to this raid</span>
-            </div>
-            <%= link_to '', new_raid_tag_path(@raid) %>
-          </div>
+          <%= render partial: 'apply_card', locals: { raid: @raid, empty: true } %>
+        <% else %>
+          <%= render partial: 'apply_card', locals: { raid: @raid } %>
         <% end %>
         <% if @pending_tags.any? %>
           <%= render 'pending_tags' %>
@@ -88,15 +84,16 @@
   <script type="text/javascript">
     function no_tags_card() {
       $tag_count = $('.raid-show-tags-pending-content').find('.pending-card').length
-      $apply_card = $('.apply');
-      <% card = ApplicationController.renderer.render(partial: "raids/no_tags_card", layout: false) %>
+      $no_tags_card = $('.no-tags');
+      <% no_tags_card = ApplicationController.renderer.render(partial: "raids/no_tags_card", layout: false) %>
       if ($tag_count == 0) {
-        $('.raid-show-tags-pending-content').append('<%= j render(html: card ) %>')
-        $('.apply').hide().slideDown('fast')
-      } else if ($apply_card.is(':visible') && $tag_count > 0) {
-        $('.apply').slideUp('fast').remove()
+        if (!$no_tags_card.is(':visible')) {
+          $('.raid-show-tags-pending-content').append('<%= j render(html: no_tags_card ) %>');
+        }
+      } else if ($tag_count > 0) {
+        $('.no-tags').slideUp('fast').remove();
       }
-    }
+    };
 
     App.cable.subscriptions.create(
       {
@@ -115,6 +112,7 @@
             success: function(data) {
               console.log(data);
               calc_pending_cards();
+              no_tags_card();
             },
             error: function(jqXHR) {
               console.error(jqXHR.responseText);
@@ -146,6 +144,38 @@
               console.log(data);
               calc_pending_cards();
               calc_accepted_cards();
+              no_tags_card();
+            },
+            error: function(jqXHR) {
+              console.error(jqXHR.responseText);
+            }
+          });
+        }
+      }
+    );
+
+    App.cable.subscriptions.create(
+      {
+        channel: "DeleteChannel",
+        raid_id: <%= @raid.id %>,
+      },
+      {
+        connected: function(data) {
+          console.log("[CONNECTED to Delete channel]");
+        },
+        received: function(data) {
+          console.log(data.raid_id);
+          console.log(data.tag_id);
+          $.ajax({
+            type: "GET",
+            url: "/tags/" + data.tag_id + "/delete_tag",
+            data: {
+              tag_id: data.tag_id,
+              raid_id: data.raid_id
+            },
+            success: function(data) {
+              console.log(data);
+              calc_pending_cards();
               no_tags_card();
             },
             error: function(jqXHR) {

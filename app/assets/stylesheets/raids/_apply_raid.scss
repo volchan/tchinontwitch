@@ -24,3 +24,17 @@
     }
   }
 }
+.no-tags {
+  display: flex;
+  height: 50px;
+  margin: 10px;
+  border-radius: 4px;
+  background-color: lighten(#151515, 10%);
+  box-shadow: 1px 0 3px rgba(0, 0, 0, .25);
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &-content {
+    color: $brand-color;
+  }
+}
