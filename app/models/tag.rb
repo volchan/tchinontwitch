@@ -10,6 +10,8 @@ class Tag < ApplicationRecord
   after_create :publish_pending_on_card_channel
   after_update :publish_on_roster_channel
 
+  before_destroy :publish_on_delete_channel
+
   attr_accessor :validate_user
 
   private
@@ -32,6 +34,14 @@ class Tag < ApplicationRecord
   def publish_on_roster_channel
     ActionCable.server.broadcast(
     "roster_#{self.raid.id}",
+      tag_id: self.id,
+      raid_id: self.raid.id
+    )
+  end
+
+  def publish_on_delete_channel
+    ActionCable.server.broadcast(
+    "delete_#{self.raid.id}",
       tag_id: self.id,
       raid_id: self.raid.id
     )

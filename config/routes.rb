@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     get :render_cable_card
     get :show_roster_list
     get :edit_tag
-    resources :tags, only: %i[new create update destroy]
+    resources :tags, only: %i[new create update destroy] do
+      get :delete_tag
+    end
   end
 end

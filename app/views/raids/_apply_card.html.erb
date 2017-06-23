@@ -1,0 +1,17 @@
+<% if local_assigns[:empty] %>
+  <div class="apply">
+    <div class="apply-content">
+      <i class="fa fa-plus-circle"></i>
+      <span>Apply to this raid</span>
+    </div>
+    <%= link_to '', new_raid_tag_path(raid) %>
+  </div>
+<% else %>
+  <div class="apply" style="display: none;">
+    <div class="apply-content">
+      <i class="fa fa-plus-circle"></i>
+      <span>Apply to this raid</span>
+    </div>
+    <%= link_to '', new_raid_tag_path(raid) %>
+  </div>
+<% end %>
