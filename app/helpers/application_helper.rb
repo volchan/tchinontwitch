@@ -13,18 +13,18 @@ module ApplicationHelper
 
   def class_img(toon)
     case toon.class_id
-    when 'Warrior' then 'http://media.blizzard.com/wow/icons/18/class_1.jpg'
-    when 'Paladin' then 'http://media.blizzard.com/wow/icons/18/class_2.jpg'
-    when 'Hunter' then 'http://media.blizzard.com/wow/icons/18/class_3.jpg'
-    when 'Rogue' then 'http://media.blizzard.com/wow/icons/18/class_4.jpg'
-    when 'Priest' then 'http://media.blizzard.com/wow/icons/18/class_5.jpg'
+    when 'Warrior' then image_tag 'http://media.blizzard.com/wow/icons/18/class_1.jpg'
+    when 'Paladin' then image_tag 'http://media.blizzard.com/wow/icons/18/class_2.jpg'
+    when 'Hunter' then image_tag 'http://media.blizzard.com/wow/icons/18/class_3.jpg'
+    when 'Rogue' then image_tag 'http://media.blizzard.com/wow/icons/18/class_4.jpg'
+    when 'Priest' then image_tag 'http://media.blizzard.com/wow/icons/18/class_5.jpg'
     when 'Death Knight' then 'http://media.blizzard.com/wow/icons/18/class_6.jpg'
-    when 'Shaman' then 'http://media.blizzard.com/wow/icons/18/class_7.jpg'
-    when 'Mage' then 'http://media.blizzard.com/wow/icons/18/class_8.jpg'
-    when 'Warlock' then 'http://media.blizzard.com/wow/icons/18/class_9.jpg'
-    when 'Monk' then 'http://media.blizzard.com/wow/icons/18/class_10.jpg'
-    when 'Druid' then 'http://media.blizzard.com/wow/icons/18/class_11.jpg'
-    when 'Demon Hunter' then 'http://media.blizzard.com/wow/icons/18/class_12.jpg'
+    when 'Shaman' then image_tag 'http://media.blizzard.com/wow/icons/18/class_7.jpg'
+    when 'Mage' then image_tag 'http://media.blizzard.com/wow/icons/18/class_8.jpg'
+    when 'Warlock' then image_tag 'http://media.blizzard.com/wow/icons/18/class_9.jpg'
+    when 'Monk' then image_tag 'http://media.blizzard.com/wow/icons/18/class_10.jpg'
+    when 'Druid' then image_tag 'http://media.blizzard.com/wow/icons/18/class_11.jpg'
+    when 'Demon Hunter' then image_tag 'http://media.blizzard.com/wow/icons/18/class_12.jpg'
     end
   end
 

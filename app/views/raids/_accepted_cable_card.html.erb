@@ -11,12 +11,14 @@
   <% end %>
   <div class="accepted-card-img" style="<%= toon_picture_accepted(tag.toon).gsub('avatar', 'main') %>"></div>
   <div class="accepted-card-infos">
-    <p>
-      <%= "#{tag.toon.name}" %>
+    <div class="accepted-card-infos-top">
+      <p><%= "#{tag.toon.name}" %></p>
       <%= link_to toon_armory(tag.toon), target: :_blank do %>
         <i class="fa fa-link"></i>
       <% end %>
-    </p>
+      <%= class_img(tag.toon) %>
+      <%= spec_img(tag.toon) %>
+    </div>
     <p><%= "user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
   </div>
 </div>
