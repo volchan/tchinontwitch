@@ -16,6 +16,7 @@
       <%= link_to toon_armory(tag.toon), target: :_blank do %>
         <i class="fa fa-link"></i>
       <% end %>
+      <span style="background-image: url('<%= class_img(tag.toon) %>');"></span>
     </p>
     <p><%= "user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
   </div>

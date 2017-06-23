@@ -3,7 +3,7 @@
   <div class="pending-card-infos">
     <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
     <div>
-      <%= class_img(tag.toon) %>
+      <%= spec_img(tag.toon) %>
       <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
         <%= spec_role_img(tag.toon.spec_role) %>
         <%= "#{tag.toon.spec_role.downcase}, ilvl : #{tag.toon.i_level}" %>
