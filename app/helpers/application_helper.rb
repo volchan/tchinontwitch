@@ -18,7 +18,7 @@ module ApplicationHelper
     when 'Hunter' then image_tag 'http://media.blizzard.com/wow/icons/18/class_3.jpg'
     when 'Rogue' then image_tag 'http://media.blizzard.com/wow/icons/18/class_4.jpg'
     when 'Priest' then image_tag 'http://media.blizzard.com/wow/icons/18/class_5.jpg'
-    when 'Death Knight' then 'http://media.blizzard.com/wow/icons/18/class_6.jpg'
+    when 'Death Knight' then image_tag 'http://media.blizzard.com/wow/icons/18/class_6.jpg'
     when 'Shaman' then image_tag 'http://media.blizzard.com/wow/icons/18/class_7.jpg'
     when 'Mage' then image_tag 'http://media.blizzard.com/wow/icons/18/class_8.jpg'
     when 'Warlock' then image_tag 'http://media.blizzard.com/wow/icons/18/class_9.jpg'
