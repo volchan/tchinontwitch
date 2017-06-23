@@ -7,8 +7,25 @@ module ApplicationHelper
     "background-image: linear-gradient(rgba(0,0,0, 0), rgba(0,0,0, 0.9)), url('https://render-eu.worldofwarcraft.com/character/#{toon.thumbnail.gsub('avatar', 'main')}');"
   end
 
-  def class_img(toon)
+  def spec_img(toon)
     image_tag "https://blzmedia-a.akamaihd.net/wow/icons/56/#{toon.spec_icon}.jpg"
+  end
+
+  def class_img(toon)
+    case toon.class_id
+    when 'Warrior' then image_tag 'http://media.blizzard.com/wow/icons/18/class_1.jpg'
+    when 'Paladin' then image_tag 'http://media.blizzard.com/wow/icons/18/class_2.jpg'
+    when 'Hunter' then image_tag 'http://media.blizzard.com/wow/icons/18/class_3.jpg'
+    when 'Rogue' then image_tag 'http://media.blizzard.com/wow/icons/18/class_4.jpg'
+    when 'Priest' then image_tag 'http://media.blizzard.com/wow/icons/18/class_5.jpg'
+    when 'Death Knight' then 'http://media.blizzard.com/wow/icons/18/class_6.jpg'
+    when 'Shaman' then image_tag 'http://media.blizzard.com/wow/icons/18/class_7.jpg'
+    when 'Mage' then image_tag 'http://media.blizzard.com/wow/icons/18/class_8.jpg'
+    when 'Warlock' then image_tag 'http://media.blizzard.com/wow/icons/18/class_9.jpg'
+    when 'Monk' then image_tag 'http://media.blizzard.com/wow/icons/18/class_10.jpg'
+    when 'Druid' then image_tag 'http://media.blizzard.com/wow/icons/18/class_11.jpg'
+    when 'Demon Hunter' then image_tag 'http://media.blizzard.com/wow/icons/18/class_12.jpg'
+    end
   end
 
   def spec_role_img(role)
