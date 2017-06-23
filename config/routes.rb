@@ -11,9 +11,13 @@ Rails.application.routes.draw do
   end
 
   mount ActionCable.server => '/cable'
+
   devise_for :users
+
   root to: 'pages#home'
+
   resources :toons, only: %i[index new create update destroy]
+
   resources :raids, shallow: true do
     get :render_cable_card
     get :show_roster_list

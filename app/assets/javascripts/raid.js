@@ -35,6 +35,14 @@ function remove_cards() {
   });
 };
 
+function show_user_note() {
+  $('.raid-show-tags').on('click', function(event) {
+      $target = event.target.className;
+      $note = "fa fa-comment";
+      
+  });
+};
+
 function roster_btn_click() {
   $('#roster-btn').on('click', function() {
     console.log($(this).data('raid'));
