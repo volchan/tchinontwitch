@@ -9,11 +9,30 @@
       text-align: center;
     }
   }
-
   .form-group {
     position: relative;
   }
+  .form-control {
+    border-radius: 2px;
+  }
+}
 
+@media (max-width: $screen-xs) {
+  .devise {
+    &-content {
+      width: 80%;
+    }
+  }
+  .has-error .help-block {
+    position: absolute;
+    color: darken($red, 10%);
+    right: 13px;
+    top: 3px;
+    text-align: right;
+  }
+}
+
+@media (min-width: $screen-sm) {
   .has-error .help-block {
     position: absolute;
     margin: 0;
@@ -22,7 +41,7 @@
     right: 103%;
     width: 220px;
     margin-left: -1px;
-    top: 43%;
+    top: 0%;
     text-align: center;
     padding: 6px 0px;
     border-radius: 4px;

@@ -7,7 +7,7 @@
       <div class="form-inputs">
         <%= f.input :email, placeholder: 'email', label: false, required: true, autofocus: true %>
         <%= f.input :username, placeholder: 'username', label: false, required: true, autofocus: true %>
-        <%= f.input :password, placeholder: 'password', label: false, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+        <%= f.input :password, placeholder: 'password', label: false, required: true %>
         <%= f.input :password_confirmation, placeholder: 'confirm your password', label: false, required: true %>
       </div>
 
