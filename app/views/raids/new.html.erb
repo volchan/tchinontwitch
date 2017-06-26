@@ -3,12 +3,12 @@
 <div class="devise">
   <div class="devise-content">
     <%= simple_form_for @raid do |f| %>
-    <%= f.association :dungeon, collection: Dungeon.all.order(name: :asc), required: true %>
-    <%= f.input :faction, collection: Raid.factions, selected: 1, required: true %>
-    <%= f.association :leader, collection: Toon.where(user: current_user).order(name: :asc), default: 1 %>
-    <%= f.input :difficulty, collection: Raid.difficulties, selected: 0, required: true %>
-    <%= f.input :date, as: :string, input_html: { class: 'datetimepicker' }, placeholder: 'yyyy-mm-dd hh:ii', required: true %>
-    <%= f.submit 'Create raid', class: 'btn btn-primary' %>
+      <%= f.association :dungeon, collection: Dungeon.all.order(name: :asc), required: true %>
+      <%= f.input :faction, collection: Raid.factions, selected: 1, required: true %>
+      <%= f.association :leader, collection: Toon.where(user: current_user).order(name: :asc), default: 1 %>
+      <%= f.input :difficulty, collection: Raid.difficulties, selected: 0, required: true %>
+      <%= f.input :date, as: :string, input_html: { class: 'datetimepicker' }, placeholder: 'yyyy-mm-dd hh:ii', required: true %>
+      <%= f.submit 'Create raid', class: 'btn btn-primary' %>
     <% end %>
 
     <%= content_for :after_js do %>

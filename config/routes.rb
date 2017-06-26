@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :users, only: %i[note update_note] do
+    get :note, to: 'users#note'
+    patch :update_note, to:'users#update_note'
+  end
+
   root to: 'pages#home'
 
   resources :toons, only: %i[index new create update destroy]

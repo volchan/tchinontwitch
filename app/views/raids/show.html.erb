@@ -86,6 +86,25 @@
 
 <%= content_for :after_js do %>
   <script type="text/javascript">
+    $('.raid-show-tags').on('click', function(event) {
+      $target = event.target.className;
+      console.log(event.target.dataset.userId);
+      $card = event.target.parentElement.parentElement.parentElement;
+      $user_note = 'fa fa-comment user-note'
+      if ($target == $user_note) {
+        $.ajax({
+          type: 'GET',
+          url: "/users/" + event.target.dataset.userId + "/note",
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(jqXHR) {
+            console.log(jqXHR.responseText);
+          }
+        })
+      }
+    });
+
     function no_tags_card() {
       $tag_count = $('.raid-show-tags-pending-content').find('.pending-card').length
       $apply_card = $('.apply');
@@ -96,7 +115,7 @@
       } else if ($apply_card.is(':visible') && $tag_count > 0) {
         $('.apply').slideUp('fast').remove()
       }
-    }
+    };
 
     App.cable.subscriptions.create(
       {

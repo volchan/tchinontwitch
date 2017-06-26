@@ -1,10 +1,12 @@
 <div class="pending-card" data-pending-tag="<%= tag.id %>">
   <div class="pending-card-img" style="<%= toon_picture(tag.toon) %>"></div>
   <div class="pending-card-infos">
-    <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
-    <span>
-      <i class="fa fa-comment" data-user-id="<%= tag.toon.user.id %>"></i>
-    </span>
+    <p>
+      <%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %>
+      <% if current_user.admin? %>
+        <i class="fa fa-comment user-note" data-user-id="<%= tag.toon.user.id %>"></i>
+      <% end %>
+    </p>
     <div>
       <%= class_img(tag.toon) %>
       <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
