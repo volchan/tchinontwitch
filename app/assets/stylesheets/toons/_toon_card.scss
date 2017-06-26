@@ -54,3 +54,13 @@
     }
   }
 }
+
+@media (max-width: $screen-xs) {
+  .toon-card {
+    width: 100%;
+    height: 80px;
+    &-infos {
+      font-size: small;
+    }
+  }
+}

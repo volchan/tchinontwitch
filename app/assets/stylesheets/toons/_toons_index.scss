@@ -20,3 +20,22 @@
     justify-content: space-between;
   }
 }
+
+@media (max-width: $screen-xs) {
+  .toons {
+    &-title {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+    &-container {
+      border-radius: 4px;
+      flex-direction: column;
+      flex-flow: row wrap;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
