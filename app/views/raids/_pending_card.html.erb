@@ -3,7 +3,7 @@
   <div class="pending-card-infos">
     <p>
       <%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %>
-      <% if current_user.admin? %>
+      <% if current_user == tag.raid.leader.user || current_user.admin? %>
         <i class="fa fa-comment user-note" data-user-id="<%= tag.toon.user.id %>"></i>
       <% end %>
     </p>
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="pending-card-btns">
-    <% if (local_assigns[:user] ? user : current_user) == tag.raid.leader.user %>
+    <% if current_user == tag.raid.leader.user || current_user.admin? %>
       <%= link_to tag_path(tag, status: 1), method: :patch do %>
         <i class="accept fa fa-check-circle"></i>
       <% end %>
@@ -30,7 +30,7 @@
       <div class="fake-div-status"></div>
       <div class="fake-div-status"></div>
     <% end %>
-    <% if (local_assigns[:user] ? user : current_user) == tag.toon.user %>
+    <% if current_user == tag.toon.user %>
       <%= link_to tag_path(tag), method: :delete do %>
         <i class="delete fa fa-trash"></i>
       <% end %>

@@ -4,7 +4,9 @@
   <% end %>
   <% if current_user == tag.raid.leader.user %>
     <div class="accepted-card-btns">
-      <i class="fa fa-comment" data-user-id="<%= tag.toon.user.id %>"></i>
+      <% if current_user == tag.raid.leader.user || current_user.admin? %>
+        <i class="fa fa-comment user-note" data-user-id="<%= tag.toon.user.id %>"></i>
+      <% end %>
       <%= link_to tag_path(tag, status: 0), method: :patch do %>
         <i class="fa fa-refresh"></i>
       <% end %>
