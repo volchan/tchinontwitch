@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :toons, dependent: :destroy
   has_many :tags, through: :toons
 
-  validates :username, uniqueness: true
+  validates :username, presence: true, uniqueness: true
 
   attr_accessor :login
 
