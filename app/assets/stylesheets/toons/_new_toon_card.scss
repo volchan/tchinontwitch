@@ -32,3 +32,10 @@
     width: 100%;
   }
 }
+
+@media (max-width: $screen-sm) {
+  .new-toon-card {
+    margin-bottom: 10px;
+    width: 300px;
+  }
+}
