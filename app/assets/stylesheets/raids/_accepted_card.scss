@@ -20,24 +20,29 @@
     background-position: 50% 65%;
   }
   &-infos {
-    width: 100%;
     bottom: 0;
-    font-size: 1em;
+    width: 100%;
+    padding: 5px;
+    font-size: 0.6em;
     display: flex;
     position: absolute;
     flex-direction: column;
-    padding: 5px;
     justify-content: center;
-    p {
-      margin: 0;
-      font-size: 0.8em;
+    &-top {
+      display: flex;
+      align-items: center;
+      i {
+        font-size: 0.75em;
+        margin: 0 5px 0 0;
+      }
     }
-    span {
-      font-size: 0.8em;
+    p {
+      margin: 0 5px 0 0;
     }
     img {
-      width: 10px;
-      vertical-align: sub;
+      width: 12px;
+      margin: 0 5px 0 0;
+      border-radius: 4px;
     }
   }
   &-btns {

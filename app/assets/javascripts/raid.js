@@ -21,9 +21,11 @@ function calc_accepted_cards() {
 function remove_cards() {
   $('.raid-show-tags').on('click', function(event) {
     $target = event.target.className;
+    console.log($target);
     $accepted = "accept fa fa-check-circle";
     $refused = "refuse fa fa-times-circle";
     $reset = "fa fa-refresh";
+    $destroy = "fa fa-trash";
     $card = event.target.parentElement.parentElement.parentElement;
     if ($target == $accepted || $target == $refused) {
       $($card).slideUp('fast').remove();
@@ -31,17 +33,22 @@ function remove_cards() {
     } else if ($target == $reset) {
       $($card).slideUp('fast').remove();
       calc_accepted_cards();
+    } else if ($target == $destroy) {
+      $($card).slideUp('fast').remove();
     }
   });
 };
 
-function show_user_note() {
-  $('.raid-show-tags').on('click', function(event) {
-      $target = event.target.className;
-      $note = "fa fa-comment";
-      
+function slide_apply_card_down() {
+  $('.raid-show-tags-pending').on('click', function(event) {
+    $target = event.target.className;
+    console.log($target);
+    $destroy = "delete fa fa-trash";
+    if ($target == $destroy) {
+      $('.apply').slideDown('fast');
+    }
   });
-};
+}
 
 function roster_btn_click() {
   $('#roster-btn').on('click', function() {
@@ -62,6 +69,6 @@ function roster_btn_click() {
 $(document).on('ready', function() {
   calc_pending_cards();
   calc_accepted_cards();
-  // remove_cards();
   roster_btn_click();
+  slide_apply_card_down();
 });

@@ -8,19 +8,56 @@
     <h2>BETA</h2>
   </div>
   <div class="header-btn">
-    <% if user_signed_in? %>
-      <%= link_to toons_path do %>
-        <i class="fa fa-users"></i> <%= 'My characters' %>
+    <div class="hidden-xs hidden-sm">
+      <% if user_signed_in? %>
+        <%= link_to toons_path do %>
+          <i class="fa fa-users"></i> <%= 'My characters' %>
+        <% end %>
+        &nbsp <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+        <% end %>
+        <% if current_user.admin %>
+          &nbsp <%= link_to "New Raid", new_raid_path, class: "btn btn-xs btn-primary" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-xs btn-primary' %> &nbsp
+        <%= link_to "Login", new_user_session_path %>
       <% end %>
-      &nbsp <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-      <% end %>
-      <% if current_user.admin %>
-        &nbsp <%= link_to "New Raid", new_raid_path, class: "btn btn-xs btn-primary" %>
-      <% end %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-xs btn-primary' %> &nbsp
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
+    </div>
+    <div class="dropdown hidden-md hidden-lg">
+      <i class="fa fa-bars" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> <%= 'Menu' %>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to toons_path do %>
+              <i class="fa fa-users"></i> <%= 'My characters' %>
+            <% end %>
+          </li>
+          <% if current_user.admin %>
+            <li>
+              <%= link_to new_raid_path do %>
+                <i class="fa fa-plus-circle"></i> <%= 'New raid' %>
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <i class="fa fa-user-plus"></i> <%= 'Sign up' %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <i class="fa fa-sign-in"></i> <%= 'Log in' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

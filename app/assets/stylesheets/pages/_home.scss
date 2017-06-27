@@ -56,3 +56,30 @@
     }
   }
 }
+
+@media (max-width: $screen-xs) {
+  .home {
+    &-raids {
+      flex-direction: column;
+      &-left {
+        h3 {
+          font-size: 1.5em;
+        }
+        &-content {
+          font-size: small;
+        }
+      }
+      &-right {
+        h3 {
+          font-size: 1.5em;
+        }
+        &-content {
+          font-size: small;
+        }
+      }
+    }
+  }
+  .dropdown {
+    font-family: $base-font;
+  }
+}
