@@ -1,13 +1,13 @@
 class TagsController < ApplicationController
   before_action :find_raid, only: %i[new create]
-  before_action :find_tag, only: %i[update destroy]
+  before_action :find_tag, only: %i[update destroy show_note]
 
   def new
     @tag = Tag.new
   end
 
   def create
-    @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), raid: @raid)
+    @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), note: tag_params[:note], raid: @raid)
     @tag.validate_user = true
     if @tag.save
       redirect_to @raid
@@ -27,6 +27,10 @@ class TagsController < ApplicationController
     @tag.destroy
   end
 
+  def show_note
+    respond_to :js
+  end
+
   private
 
   def find_raid
@@ -34,10 +38,10 @@ class TagsController < ApplicationController
   end
 
   def find_tag
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find(params[:id] || params[:tag_id])
   end
 
   def tag_params
-    params.require(:tag).permit(:toon_id)
+    params.require(:tag).permit(:toon_id, :note)
   end
 end

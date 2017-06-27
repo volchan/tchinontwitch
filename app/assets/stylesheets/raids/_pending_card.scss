@@ -12,12 +12,19 @@
     background-position: center;
   }
   &-infos {
-    flex: 8;
+    flex: 7.5;
     font-size: 1em;
     display: flex;
     flex-direction: column;
     padding-left: 10px;
     justify-content: center;
+    .user-note{
+      color: $brand-color;
+      vertical-align: text-top;
+      &:hover {
+        color: darken($brand-color, 20%);
+      }
+    }
     p {
       margin: 0;
       font-size: small;
@@ -31,10 +38,17 @@
     }
   }
   &-btns {
-    flex: 1;
+    flex: 1.5;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    .tag-note{
+      color: $brand-color;
+      vertical-align: text-top;
+      &:hover {
+        color: darken($brand-color, 20%);
+      }
+    }
     .fake-div-status {
       width: 13.7px;
     }

@@ -3,7 +3,8 @@
 <div class="devise">
   <div class="devise-content">
     <%= simple_form_for [@raid, @tag] do |f| %>
-    <%= f.association :toon, collection: Toon.where(user: current_user).where(faction: @raid.faction) %>
+    <%= f.association :toon, collection: Toon.where(user: current_user).where(faction: @raid.faction), required: true, label: false, selected: 1 %>
+    <%= f.input :note, label: false, placeholder: 'Enter a note here. (optional)' %>
     <%= f.submit 'Apply', class: 'btn btn-primary' %>
     <% end %>
   </div>
