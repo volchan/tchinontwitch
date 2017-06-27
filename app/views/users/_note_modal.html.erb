@@ -1,0 +1,19 @@
+<div class="modal fade" id="note-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Note for <%= "#{user.username.capitalize}"%></h4>
+      </div>
+      <%= simple_form_for user, url: user_update_note_path(user), remote: true, authenticity_token: true, method: :patch do |f| %>
+        <div class="modal-body">
+          <%= f.input :note, label: false, placeholder: 'Enter a note' %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, 'Update note' %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
