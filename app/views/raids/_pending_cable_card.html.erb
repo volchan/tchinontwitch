@@ -1,7 +1,12 @@
 <div class="pending-card" data-pending-tag="<%= tag.id %>">
   <div class="pending-card-img" style="<%= toon_picture(tag.toon) %>"></div>
   <div class="pending-card-infos">
-    <p><%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %></p>
+    <p>
+      <%= "#{tag.toon.name}-#{tag.toon.realm.name} lvl : #{tag.toon.level} | user : #{tag.toon.user.username.capitalize}(#{user_raids(tag.toon.user)})" %>
+      <% if user == raid.leader.user || user.admin? %>
+        <i class="fa fa-comment user-note" data-user-id="<%= tag.toon.user.id %>"></i>
+      <% end %>
+    </p>
     <div>
       <%= spec_img(tag.toon) %>
       <span><%= "#{tag.toon.spec_name} #{tag.toon.class_id}, role : "%>
@@ -14,7 +19,10 @@
     </div>
   </div>
   <div class="pending-card-btns">
-    <% if user == raid.leader.user %>
+    <% if user == raid.leader.user || user.admin? %>
+      <% if !tag.note.nil? %>
+        <i class="fa fa-sticky-note tag-note" data-tag-id="<%= tag.id %>"></i>
+      <% end %>
       <%= link_to tag_path(tag, status: 1), method: :patch do %>
         <i class="accept fa fa-check-circle"></i>
       <% end %>

@@ -1,0 +1,6 @@
+<% modal = ApplicationController.renderer.render(partial: "tags/note_modal", locals: { tag: @tag }, layout: false) %>
+$('#tag-note-modal').remove();
+$('.raid-show').append('<%= j render(html: modal) %>');
+$('.modal-content').addClass('bordered');
+$('#tag-note-modal').addClass('text-black no-text-shadow').modal();
+$('#tag-note-modal').modal('show');

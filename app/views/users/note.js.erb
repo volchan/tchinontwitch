@@ -1,0 +1,6 @@
+<% modal = ApplicationController.renderer.render(partial: "users/note_modal", locals: { user: @user }, layout: false) %>
+$('#note-modal').remove();
+$('.raid-show').append('<%= j render(html: modal) %>');
+$('.modal-content').addClass('bordered');
+$('#note-modal').addClass('text-black no-text-shadow').modal();
+$('#note-modal').modal('show');

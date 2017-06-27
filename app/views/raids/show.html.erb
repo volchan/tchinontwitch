@@ -82,6 +82,36 @@
 
 <%= content_for :after_js do %>
   <script type="text/javascript">
+    $('.raid-show').on('click', function(event) {
+      $target = event.target.className;
+      console.log(event.target.dataset.tagId);
+      $user_note = 'fa fa-comment user-note'
+      $tag_note = 'fa fa-sticky-note tag-note'
+      if ($target == $user_note) {
+        $.ajax({
+          type: 'GET',
+          url: "/users/" + event.target.dataset.userId + "/note",
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(jqXHR) {
+            console.log(jqXHR.responseText);
+          }
+        })
+      } else if ($target == $tag_note) {
+        $.ajax({
+          type: 'GET',
+          url: "/tags/" + event.target.dataset.tagId + "/show_note",
+          success: function(data) {
+            console.log(data);
+          },
+          error: function(jqXHR) {
+            console.log(jqXHR.responseText);
+          }
+        })
+      }
+    });
+
     function no_tags_card() {
       $tag_count = $('.raid-show-tags-pending-content').find('.pending-card').length
       $no_tags_card = $('.no-tags');
