@@ -2,7 +2,7 @@
   <% if tag.toon == tag.raid.leader %>
     <i class="fa fa-star leader-ico"></i>
   <% end %>
-  <% if current_user == tag.raid.leader.user %>
+  <% if current_user == tag.raid.leader.user || current_user.admin? %>
     <div class="accepted-card-btns">
       <% if current_user == tag.raid.leader.user || current_user.admin? %>
         <% if !tag.note.nil? && !tag.note.empty? %>
