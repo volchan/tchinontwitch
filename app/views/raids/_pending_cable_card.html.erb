@@ -22,6 +22,8 @@
     <% if user == raid.leader.user || user.admin? %>
       <% if !tag.note.nil? && !tag.note.empty? %>
         <i class="fa fa-sticky-note tag-note" data-tag-id="<%= tag.id %>"></i>
+      <% else %>
+        <div class="fake-div-status"></div>
       <% end %>
       <%= link_to tag_path(tag, status: 1), method: :patch do %>
         <i class="accept fa fa-check-circle"></i>
