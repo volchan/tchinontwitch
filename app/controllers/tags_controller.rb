@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   def show_note
     respond_to :js
   end
-  
+
   def delete_tag
     respond_to do |format|
       @deleted_tag = params[:tag_id]
