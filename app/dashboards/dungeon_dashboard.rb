@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class DungeonDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -8,12 +8,12 @@ class DungeonDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    raids: Field::HasMany,
     id: Field::Number,
+    raids: Field::HasMany,
     name: Field::String,
     slug: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,10 +22,10 @@ class DungeonDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :raids,
     :id,
+    :raids,
     :name,
-    :slug,
+    :slug
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,7 +36,7 @@ class DungeonDashboard < Administrate::BaseDashboard
     :name,
     :slug,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -45,13 +45,13 @@ class DungeonDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :raids,
     :name,
-    :slug,
+    :slug
   ].freeze
 
   # Overwrite this method to customize how dungeons are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(dungeon)
-  #   "Dungeon ##{dungeon.id}"
-  # end
+  def display_resource(dungeon)
+    dungeon.name
+  end
 end

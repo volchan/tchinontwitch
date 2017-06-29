@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class ToonDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -26,7 +26,7 @@ class ToonDashboard < Administrate::BaseDashboard
     spec_role: Field::String,
     spec_icon: Field::String,
     guild_name: Field::String,
-    guild_realm: Field::String,
+    guild_realm: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,10 +35,11 @@ class ToonDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :user,
-    :realm,
-    :tags,
     :id,
+    :name,
+    :realm,
+    :user,
+    :tags
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -62,7 +63,7 @@ class ToonDashboard < Administrate::BaseDashboard
     :spec_role,
     :spec_icon,
     :guild_name,
-    :guild_realm,
+    :guild_realm
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -84,13 +85,13 @@ class ToonDashboard < Administrate::BaseDashboard
     :spec_role,
     :spec_icon,
     :guild_name,
-    :guild_realm,
+    :guild_realm
   ].freeze
 
   # Overwrite this method to customize how toons are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(toon)
-  #   "Toon ##{toon.id}"
-  # end
+  def display_resource(toon)
+    toon.name.capitalize
+  end
 end

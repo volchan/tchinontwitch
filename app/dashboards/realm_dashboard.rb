@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class RealmDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -13,7 +13,7 @@ class RealmDashboard < Administrate::BaseDashboard
     name: Field::String,
     slug: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,7 +25,7 @@ class RealmDashboard < Administrate::BaseDashboard
     :toons,
     :id,
     :name,
-    :slug,
+    :slug
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,7 +36,7 @@ class RealmDashboard < Administrate::BaseDashboard
     :name,
     :slug,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -45,13 +45,13 @@ class RealmDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :toons,
     :name,
-    :slug,
+    :slug
   ].freeze
 
   # Overwrite this method to customize how realms are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(realm)
-  #   "Realm ##{realm.id}"
-  # end
+  def display_resource(realm)
+    realm.name
+  end
 end

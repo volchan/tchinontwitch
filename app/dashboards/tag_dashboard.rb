@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class TagDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -13,7 +13,7 @@ class TagDashboard < Administrate::BaseDashboard
     id: Field::Number,
     status: Field::String.with_options(searchable: false),
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,10 +22,10 @@ class TagDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :id,
     :toon,
     :raid,
-    :id,
-    :status,
+    :status
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,7 +36,7 @@ class TagDashboard < Administrate::BaseDashboard
     :id,
     :status,
     :created_at,
-    :updated_at,
+    :updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -45,7 +45,7 @@ class TagDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :toon,
     :raid,
-    :status,
+    :status
   ].freeze
 
   # Overwrite this method to customize how tags are displayed

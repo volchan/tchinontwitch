@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class UserDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -24,7 +24,7 @@ class UserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     username: Field::String,
-    admin: Field::Boolean,
+    admin: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,7 +38,7 @@ class UserDashboard < Administrate::BaseDashboard
     :tags,
     :username,
     :email,
-    :admin,
+    :admin
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -61,7 +61,7 @@ class UserDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :username,
-    :admin,
+    :admin
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -70,13 +70,13 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :username,
     :email,
-    :admin,
+    :admin
   ].freeze
 
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    user.username.capitalize
+  end
 end

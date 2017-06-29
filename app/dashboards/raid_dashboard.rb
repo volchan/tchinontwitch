@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class RaidDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -9,15 +9,15 @@ class RaidDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     dungeon: Field::BelongsTo,
-    leader: Field::BelongsTo.with_options(class_name: "Toon"),
+    leader: Field::BelongsTo.with_options(class_name: 'Toon'),
     tags: Field::HasMany,
     id: Field::Number,
-    date: Field::String,
+    date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    difficulty: Field::String.with_options(searchable: false),
+    difficulty: Field::String.with_options(searchable: true),
     leader_id: Field::Number,
-    faction: Field::String.with_options(searchable: false),
+    faction: Field::String.with_options(searchable: true)
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -26,10 +26,13 @@ class RaidDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :dungeon,
-    :leader,
-    :tags,
     :id,
+    :dungeon,
+    :difficulty,
+    :date,
+    :faction,
+    :leader,
+    :tags
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,7 +47,7 @@ class RaidDashboard < Administrate::BaseDashboard
     :updated_at,
     :difficulty,
     :leader_id,
-    :faction,
+    :faction
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -57,13 +60,13 @@ class RaidDashboard < Administrate::BaseDashboard
     :date,
     :difficulty,
     :leader_id,
-    :faction,
+    :faction
   ].freeze
 
   # Overwrite this method to customize how raids are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(raid)
-  #   "Raid ##{raid.id}"
-  # end
+  def display_resource(raid)
+    "#{raid.dungeon.name} #{raid.difficulty} - #{raid.date.strftime('%d/%m/%Y')} at #{raid.date.strftime('%H:%M')}"
+  end
 end
