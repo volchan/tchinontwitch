@@ -20,6 +20,12 @@
     right: 10px;
     text-shadow: none;
   }
+  .dropdown {
+    font-family: $base-font;
+    span {
+      font-family: $base-font;
+    }
+  }
   &-title {
     position: relative;
     a {
@@ -42,5 +48,12 @@
       margin-top: -9.5%;
       font-family: $pixel-font;
     }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .header {
+    flex: 0;
+    height: 140px;
   }
 }

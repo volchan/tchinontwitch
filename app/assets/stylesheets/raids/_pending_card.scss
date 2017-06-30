@@ -77,3 +77,34 @@
     }
   }
 }
+
+@media (max-width: $screen-xs) {
+  .pending-card {
+    width: 100%;
+    margin: 0px 10px 5px 10px;
+    i, a {
+      font-size: xx-small;
+    }
+    &-infos {
+      padding-left: 2px;
+      p {
+        font-size: xx-small;
+      }
+      span {
+        font-size: xx-small;
+      }
+      img {
+        width: 10px;
+      }
+    }
+    &-btns {
+      flex-direction: column;
+      .fake-div-status {
+        height: 9px;
+      }
+      .fake-div {
+        height: 9px;
+      }
+    }
+  }
+}

@@ -53,3 +53,9 @@
     }
   }
 }
+
+@media (max-width: $screen-xs) {
+  .footer {
+    padding: 5px;
+  }
+}
