@@ -38,3 +38,9 @@
     color: $brand-color;
   }
 }
+
+@media (max-width: $screen-xs) {
+  .apply, .no-tags {
+    width: 100%;
+  }
+}

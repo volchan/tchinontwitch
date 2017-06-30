@@ -4,8 +4,8 @@ class Tag < ApplicationRecord
 
   enum status: { pending: 0, accepted: 1, refused: 2 }
 
-  validates :toon, uniqueness: { scope: :raid_id, message: 'You allready applied with this character' }
-  validate :uniqueness_users, if: :validate_user
+  # validates :toon, uniqueness: { scope: :raid_id, message: 'You allready applied with this character' }
+  # validate :uniqueness_users, if: :validate_user
 
   after_create :publish_pending_on_card_channel
   after_update :publish_on_roster_channel

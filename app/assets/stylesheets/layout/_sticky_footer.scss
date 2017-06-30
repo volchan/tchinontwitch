@@ -10,3 +10,12 @@
     flex: 1;
   }
 }
+
+@media (max-width: $screen-xs) {
+  .site {
+    &-content {
+      flex: 0;
+      height: 600px;
+    }
+  }
+}
