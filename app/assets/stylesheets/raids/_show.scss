@@ -132,14 +132,15 @@
       width: 100%;
       flex-direction: column;
       &-pending {
+        margin-bottom: 10px;
         &-title {
           h3 {
             font-size: 1em;
           }
         }
         &-content {
-          display: flex;
-          flex-wrap: wrap;
+          display: block;
+          border-radius: 4px;
         }
       }
       &-accepted {

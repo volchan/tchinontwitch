@@ -36,5 +36,6 @@ body {
 @media (max-width: $screen-xs) {
   body {
     height: auto;
+    min-height: 100vh;
   }
 }
