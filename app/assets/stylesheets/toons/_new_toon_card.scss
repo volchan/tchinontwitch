@@ -25,3 +25,10 @@
     }
   }
 }
+
+@media (max-width: $screen-sm) {
+  .new-toon-card {
+    width: 90%;
+    margin: 5px auto;
+  }
+}
