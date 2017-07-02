@@ -5,7 +5,8 @@ class Toon < ApplicationRecord
   has_many :tags, dependent: :destroy
   # has_many :own_raids, through: :tags, source: :raids
 
-  validates :name, uniqueness: true
+  validates :name, presence: true, case_sensitive: false
+  validates_uniqueness_of :name, scope: :realm_id, message: 'This character allready exist on this realm.'
 
   enum faction: { alliance: 0, horde: 1 }
 
