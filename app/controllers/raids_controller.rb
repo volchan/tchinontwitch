@@ -26,7 +26,7 @@ class RaidsController < ApplicationController
   end
 
   def new
-    @raid = Raid.new
+    authorize @raid = Raid.new
     @dungeons = Dungeon.all.order(name: :asc)
   end
 
@@ -39,7 +39,7 @@ class RaidsController < ApplicationController
     raid_infos[:faction] = raid_params[:faction].to_i
     raid_infos[:date] = Time.parse("#{raid_params[:date]} +0200") unless raid_params[:date] == ''
     raid_infos[:leader] = leader
-    @raid = Raid.new(raid_infos)
+    authorize @raid = Raid.new(raid_infos)
     if @raid.save
       @raid.tags.create(toon: leader, status: 1)
       redirect_to @raid
@@ -83,7 +83,7 @@ class RaidsController < ApplicationController
   private
 
   def find_raid
-    @raid = Raid.find(params[:id])
+    authorize @raid = Raid.find(params[:id])
   end
 
   def ajax_find_raid

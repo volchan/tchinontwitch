@@ -19,7 +19,7 @@ class ToonsController < ApplicationController
     bnet_api_call = RestClient.get(bnet_url)
     parsed_api_call = JSON.parse(bnet_api_call)
     toon_spec = parsed_api_call['talents'].find('selected').first['spec']
-    @toon = Toon.new(
+    authorize @toon = Toon.new(
       name: parsed_api_call['name'],
       realm: realm,
       class_id: parsed_api_call['class'],
@@ -35,7 +35,6 @@ class ToonsController < ApplicationController
       spec_icon: toon_spec['icon'],
       user: current_user
     )
-    authorize @toon
     if @toon.save
       redirect_to toons_path
     else
