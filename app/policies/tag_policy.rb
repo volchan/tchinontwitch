@@ -8,7 +8,7 @@ class TagPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.toon.user
+    user == record.toon.user
   end
 
   def show_note?

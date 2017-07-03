@@ -36,7 +36,7 @@
           <span class="dps">0</span>
         </h3>
         &nbsp
-        <% if current_user.admin %>
+        <% if policy(@raid).show_roster_list? %>
           <span id="roster-btn" data-raid="<%= @raid.id %>" class="btn btn-xs btn-primary" style="text-shadow: none">Export</span>
         <% end %>
       </div>

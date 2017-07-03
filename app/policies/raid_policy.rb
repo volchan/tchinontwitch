@@ -12,7 +12,7 @@ class RaidPolicy < ApplicationPolicy
   end
 
   def edit_tag?
-    true
+    user.admin? || user == record.leader.user
   end
 
   def render_cable_card?
@@ -20,7 +20,7 @@ class RaidPolicy < ApplicationPolicy
   end
 
   def show_roster_list?
-    user.admin? || record.leader.user
+    user.admin? || user == record.leader.user
   end
 
   class Scope < Scope

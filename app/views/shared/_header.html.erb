@@ -16,7 +16,7 @@
         &nbsp <%= link_to destroy_user_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
         <% end %>
-        <% if current_user.admin %>
+        <% if policy(Raid).create? %>
           &nbsp <%= link_to "New Raid", new_raid_path, class: "btn btn-xs btn-primary" %>
         <% end %>
       <% else %>
@@ -33,7 +33,7 @@
               <i class="fa fa-users"></i> <%= 'My characters' %>
             <% end %>
           </li>
-          <% if current_user.admin %>
+          <% if policy(Raid).create? %>
             <li>
               <%= link_to new_raid_path do %>
                 <i class="fa fa-plus-circle"></i> <%= 'New raid' %>
