@@ -1,13 +1,13 @@
 class ToonsController < ApplicationController
   before_action :find_toon, only: %i[update destroy]
-
   def index
-    @toons = Toon.where(user: current_user)
+    @toons = policy_scope(Toon).order(name: :asc)
   end
 
   def show; end
 
   def new
+    skip_authorization
     @toon = Toon.new
     @realms = Realm.all.order(name: :asc)
   end
@@ -35,6 +35,7 @@ class ToonsController < ApplicationController
       spec_icon: toon_spec['icon'],
       user: current_user
     )
+    authorize @toon
     if @toon.save
       redirect_to toons_path
     else
@@ -43,6 +44,7 @@ class ToonsController < ApplicationController
   end
 
   def update
+    authorize @toon
     bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{@toon.realm.slug}/#{@toon.name.downcase}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
     bnet_api_call = RestClient.get(bnet_url)
     parsed_api_call = JSON.parse(bnet_api_call)
@@ -64,7 +66,7 @@ class ToonsController < ApplicationController
   end
 
   def destroy
-    toon.destroy
+    authorize @toon.destroy
     redirect_to toons_path
   end
 
