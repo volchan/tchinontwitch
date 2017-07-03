@@ -20,7 +20,7 @@ class RaidPolicy < ApplicationPolicy
   end
 
   def show_roster_list?
-    user == user.admin? || record.leader.user
+    user.admin? || record.leader.user
   end
 
   class Scope < Scope

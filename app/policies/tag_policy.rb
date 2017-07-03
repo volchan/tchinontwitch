@@ -4,15 +4,15 @@ class TagPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.raid.leader.user
+    record.raid.leader.user
   end
 
   def destroy?
-    user == record.toon.user
+    record.toon.user
   end
 
   def show_note?
-    user == user.admin? || record.raid.leader.user
+    user.admin? || record.raid.leader.user
   end
 
   class Scope < Scope

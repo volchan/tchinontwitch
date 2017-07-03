@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   def note
     respond_to do |format|
-      @user = User.find(params[:user_id])
+      authorize @user = User.find(params[:user_id])
       format.js
     end
   end
 
   def update_note
-    user = User.find(params[:user_id])
+    authorize user = User.find(params[:user_id])
     user.note = note_params[:note]
     user.save
   end
