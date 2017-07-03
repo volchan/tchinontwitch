@@ -87,7 +87,7 @@ class RaidsController < ApplicationController
   end
 
   def ajax_find_raid
-    @raid = Raid.find(params[:raid_id])
+    authorize @raid = Raid.find(params[:raid_id])
   end
 
   def raid_params

@@ -3,11 +3,11 @@ class TagsController < ApplicationController
   before_action :find_tag, only: %i[update destroy show_note]
 
   def new
-    @tag = Tag.new
+    authorize @tag = Tag.new
   end
 
   def create
-    @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), note: tag_params[:note], raid: @raid)
+    authorize @tag = Tag.new(toon: Toon.find(tag_params[:toon_id]), note: tag_params[:note], raid: @raid)
     @tag.validate_user = true
     if @tag.save
       redirect_to @raid
@@ -32,6 +32,7 @@ class TagsController < ApplicationController
   end
 
   def delete_tag
+    skip_authorization
     respond_to do |format|
       @deleted_tag = params[:tag_id]
       @raid = Raid.find(params[:raid_id])
@@ -46,7 +47,7 @@ class TagsController < ApplicationController
   end
 
   def find_tag
-    @tag = Tag.find(params[:id] || params[:tag_id])
+    authorize @tag = Tag.find(params[:id] || params[:tag_id])
   end
 
   def tag_params
