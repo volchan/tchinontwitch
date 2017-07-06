@@ -64,7 +64,7 @@ class ToonsController < ApplicationController
   end
 
   def destroy
-    toon.destroy
+    @toon.destroy
     redirect_to toons_path
   end
 
