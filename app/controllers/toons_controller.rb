@@ -16,7 +16,13 @@ class ToonsController < ApplicationController
     call_params = toons_params
     realm = Realm.find_by(id: call_params['realm_id'])
     bnet_url = URI.encode("https://eu.api.battle.net/wow/character/#{realm.slug}/#{call_params['name']}?fields=items,guild,talents&locale=en_GB&apikey=#{ENV['BNET_KEY']}")
-    bnet_api_call = RestClient.get(bnet_url)
+    begin
+      bnet_api_call = RestClient.get(bnet_url)
+    rescue RestClient::ExceptionWithResponse => err
+      @toon = Toon.new(name: call_params['name'], realm: realm)
+      @toon.errors.add(:name, JSON.parse(err.response)['reason'])
+      return render action: :new, local: @toon
+    end
     parsed_api_call = JSON.parse(bnet_api_call)
     toon_spec = parsed_api_call['talents'].find('selected').first['spec']
     @toon = Toon.new(
