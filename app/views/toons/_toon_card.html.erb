@@ -3,7 +3,7 @@
     <div class="toon-card-img" style="<%= toon_picture(toon) %>"></div>
     <div class="toon-card-infos">
       <p><%= "#{toon.name} @ #{toon.realm.name}" %></p>
-      <p><%= "#{toon.level} #{toon.race_id} " %></p>
+      <p><%= "#{toon.level} #{toon.race_id}, ilvl : #{toon.i_level}" %></p>
       <p><%= spec_img(toon) %> <%= "#{toon.spec_name}  #{toon.class_id}" %></p>
     </div>
     <div class="toon-card-btns">
